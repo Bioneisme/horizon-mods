@@ -1,0 +1,18 @@
+id = "sodium_horizon"
+kind = "native-mod"
+name = "Sodium Horizon"
+summary = "Tabbed video settings and rendering controls for Horizon."
+description = "Sodium Horizon adds tabbed video settings and rendering controls to Horizon."
+authors = ["Shady (Horizon port)", "JellySquid (jellysquid3", "original Sodium author)", "CaffeineMC contributors"]
+owners = ["badmasti2"]
+license = "Other"
+source = "https://github.com/badmasti2/horizon-sodium"
+icon = "https://i.postimg.cc/rzps4zLR/34fc160a-70d2-42a4-bb1b-a7e0e11c0ef5.png"
+
+[[versions]]
+version = "0.4.0"
+published = "2026-11-03"
+game = "26.3"
+file = "sodium_horizon-0.4.0.hnmod"
+sha256 = "c6a0b46946c54825f6c50ba9cbabcce9c038abaed71b7b5a39d364471386cbe4"
+changelog = "Its ui and customization for Horizon."
