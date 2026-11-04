@@ -1,0 +1,50 @@
+id = "ayynoxs_map_pack"
+kind = "native-mod"
+name = "ayynoxs map pack"
+summary = "Minimap and full-screen world map with waypoints, cave layers and map sharing between players."
+description = """
+A **minimap** and a **full-screen world map** for Horizon, written from scratch as a native mod. Inspired by the well-known Java map mods, but no code or graphics are taken from them.
+
+## ayynoxs minimap
+- Built on Horizon's own minimap renderer, with coordinates and facing direction below it
+- Square or round, north-up or rotating, 4 sizes, zoom with `I` / `O`
+- **Waypoints:** `B` opens a window for the name, `Backspace` removes the one you aim at. They show on the minimap, on the world map and in the world with their distance in metres.
+- Automatic death point
+- Chat commands: `/wp add|del|rename|share|list|clear|help`
+
+## ayynoxs world map
+- Full-screen map on `M`: drag or WASD to pan, wheel to zoom
+- Biome colours, water showing its floor, smooth relief shading
+- Saves every chunk you explore, per world/server, dimension and layer
+- Same layers as the minimap: the surface outside, your head height in caves and in the Nether
+
+## Sharing
+- `/wp share <nr> <player>` sends a waypoint as a private message, on any server
+- Explored chunks and new waypoints are shared live in co-op/LAN and on Horizon servers, and on Paper servers with the AyynoxsMapSync plugin from the GitHub release
+
+Languages: English (default), Deutsch, Français, Italiano, Русский.
+
+## What it does and doesn't
+- **Hooks:** the native hook points (frame, tick, HUD, keys, commands, minimap, settings, mods list, screen keys and characters, mod messages, player join/leave), plus the Advancements screen's draw, mouse, scroll and close (the world map is drawn in its place), `extras_connecting` (the server address, for the map's folder) and the chat HUD's `add` / `add_signed` (to hide shared-waypoint messages).
+- **Files:** writes only under `horizon-mods/.horizon-mod-data/ayynoxs_minimap/` (settings, waypoints) and `ayynoxs_worldmap/` (map tiles).
+- **Network:** no internet access. It only sends Horizon mod messages on `ayynoxs_map:sync` to the server you play on, and `/msg` commands you start yourself with `/wp share <nr> <player>`.
+- Pinned to nightly `6475f62` (2026-11-04)."""
+authors = ["DenoxyYT (Ayynox)"]
+owners = ["DenoxyYT"]
+license = "MIT"
+source = "https://github.com/DenoxyYT/ayynoxs-map-pack"
+icon = "https://raw.githubusercontent.com/DenoxyYT/ayynoxs-map-pack/main/media/icon.png"
+
+[[versions]]
+version = "0.4.1"
+published = "2026-11-04"
+game = "26.3"
+file = "ayynoxs_map_pack-0.4.1.hnmod"
+sha256 = "5e5fb402b8d69e87f4ee9ca9f5c83ba4920fe38af38ff3428ed965ba51b64b97"
+changelog = """
+B opens a window for the waypoint's name (Enter saves, Esc cancels). Standing on a waypoint, you rename it.
+Backspace removes the waypoint your crosshair aims at (or the one under the cursor on the world map). Rebindable.
+Waypoints and maps belong to the server's own world: a server's lobby, farm world or own End no longer share them.
+Detailed world map: biome colours for grass, leaves and water, the floor shining through shallow water, smooth relief shading, averaged cells when zoomed out.
+Sharing: /wp share <nr> <player> sends a waypoint as a private message on any server. Explored chunks and new waypoints are shared live in Horizon co-op/LAN and on Horizon servers, and on Paper servers with AyynoxsMapSync-0.4.0.jar (put it in plugins).
+Built for Horizon nightly 6475f62 (2026-11-04)."""
