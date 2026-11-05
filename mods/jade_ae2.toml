@@ -1,0 +1,29 @@
+id = "jade_ae2"
+kind = "native-mod"
+name = "Jade AE2 Plugin"
+summary = "Unofficial port of AE2's Jade plugin: network state, channels, P2P links, charge and crafting in Jade."
+description = """
+An unofficial port of the Jade plugin inside Applied Energistics 2 15.4.12 to Horizon, not made or endorsed by its authors. Please report problems to this port, not to them.
+
+Shows network state, smart cable channels, P2P links, charge, crafting and stored power in Jade, and names the facade or cable under the crosshair.
+
+**Needs both** AE2 for Horizon and Jade for Horizon in the same build.
+
+### Missing or not the same
+No missing feature is known. Its lines cover what the AE2 port has, so they share that port's limits.
+
+### Tested
+Windows, in single player and on LAN with one guest. On a dedicated server its lines were checked on an earlier build, not this one. Other platforms were not tested."""
+authors = ["AlgorithmX2", "TeamAppliedEnergistics", "Joeypc6"]
+owners = ["Joeypc6"]
+owner_ids = [35495484]
+license = "LGPL-3.0"
+source = "https://github.com/Joeypc6/Jade-AE2-Horizon"
+
+[[versions]]
+version = "15.4.12"
+published = "2026-11-05"
+game = "26.3"
+file = "jade_ae2-15.4.12.hnmod"
+sha256 = "0762d522b38534e71a92362b7b0f94526d9930da6e4b153e502b9c67029c4602"
+changelog = "First release on the registry, ported from the Jade plugin in AE2 15.4.12. Built for Horizon commit 6475f62."
