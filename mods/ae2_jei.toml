@@ -1,0 +1,29 @@
+id = "ae2_jei"
+kind = "native-mod"
+name = "AE2 JEI Integration"
+summary = """Unofficial port of AE2 JEI Integration: AE2's recipes in JEI, and "+" transfer into its terminals."""
+description = """
+An unofficial port of AE2 JEI Integration 1.2.1 and AE2's JEI plugin to Horizon, not made or endorsed by the original authors. Please report problems to this port, not to them.
+
+Adds AE2's recipe categories and information pages to JEI, "+" transfer into AE2's terminals, and dragging items from JEI onto AE2's config slots. It also adds a centred recipe window, the panel on the creative screen, and a page for every item saying where it comes from.
+
+**Needs both** AE2 for Horizon and a JEI bundle for Horizon in the same build. JEI is not included.
+
+### Missing or not the same
+No missing feature is known. It works only with these Horizon bundles, not with Java JEI addons. Ore shares are estimates from the world generator's data.
+
+### Tested
+Windows, in single player and on LAN with one guest. It works on the client: it was in the client that joined a dedicated server, but nothing specific to JEI was checked there. Other platforms were not tested."""
+authors = ["Tamaized", "mezz", "Joeypc6"]
+owners = ["Joeypc6"]
+owner_ids = [35495484]
+license = "LGPL-3.0"
+source = "https://github.com/Joeypc6/AE2-JEI-Horizon"
+
+[[versions]]
+version = "1.2.1"
+published = "2026-11-05"
+game = "26.3"
+file = "ae2_jei-1.2.1.hnmod"
+sha256 = "80703612458d241a08a86b8204dad49cb60a18e312dfbe6def35959f56a0026c"
+changelog = "First release on the registry, ported from AE2 JEI Integration 1.2.1. Built for Horizon commit 6475f62."
