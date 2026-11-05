@@ -3,13 +3,33 @@ kind = "native-mod"
 name = "Eating Animation"
 summary = "While you eat food, or drink a potion or milk, the item in your hand shows its bitten frames."
 description = """
-It is a port of [Eating Animation](https://github.com/Theoness1/EatingAnimation) for Horizon.
+**Port of Eating Animation for Horizon.** Based on [Eating Animation](https://github.com/Theoness1/EatingAnimation) by Theoness1
 
-While you eat food, or drink a potion or milk, the item in your hand shows its bitten frames.
+## What it does
 
-The frames come from a resource pack you build from your own copy of the EatingAnimation download with `tools/make_frame_pack.py`, and drop into Horizon's `resourcepacks/` folder.
+While you eat food, or drink a potion or milk, the item in your hand shows its bitten frames as you go.
 
-~~Or you can just download it from GitHub Releases...~~"""
+The frames come from a resource pack. You can use one of two options:
+
+- **Ready-made pack**, included in Releases:
+  - `EatingAnimationVanillaTexturePack.zip`
+  
+  Put the one you want into Horizon's `resourcepacks/` folder.
+- **Build your own** from your copy of the EatingAnimation download, with `tools/make_frame_pack.py`:
+
+  ```sh
+  python3 tools/make_frame_pack.py <EatingAnimation download (zip or folder)> <out.zip>
+  ```
+
+  Then drop the resulting zip into Horizon's `resourcepacks/` folder.
+
+## Credits
+
+- Eating Animation by [Theoness1](https://github.com/Theoness1/EatingAnimation).
+
+## License
+
+MIT. See LICENSE."""
 authors = ["soufi"]
 owners = ["soufied"]
 owner_ids = [47915535]
