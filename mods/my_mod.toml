@@ -1,0 +1,21 @@
+id = "my_mod"
+kind = "shaderpack"
+name = "Sildur's Enhanced Default Shaders"
+summary = "Ultra and potato shader"
+description = "Shader pack in Minecraft lastes version................ "
+authors = []
+owners = ["DJAWAD1343"]
+owner_ids = [207468217]
+license = "MIT"
+source = "https://github.com/DJAWAD1343/Shaderr"
+icon = "icons/my_mod.png"
+categories = ["fantasy", "high", "potato"]
+tags = ["shader", "shaders"]
+
+[[versions]]
+version = "1.0.0"
+published = "2026-11-05"
+game = "26.3"
+file = "my_mod-1.0.0.zip"
+sha256 = "b30353b5dd831cb5ab060ee96e1ac762c571bb4de5d729d329463dff0f2f1235"
+changelog = "Shader pack"
