@@ -1,0 +1,38 @@
+id = "ae2"
+kind = "native-mod"
+name = "Applied Energistics 2"
+summary = "Unofficial port of Applied Energistics 2 15.4.12: ME networks, autocrafting, spatial storage and more."
+description = """
+An unofficial port of Applied Energistics 2 15.4.12 to Horizon, not made or endorsed by its authors. Please report problems to this port, not to them.
+
+Rewritten in Rust: ME networks, storage cells, autocrafting, the cable bus with facades, P2P tunnels, spatial storage, the guide and the Fluix Researcher.
+
+**Needs its content mod** (`ae2-15.4.12.hmod`), which holds the blocks, items, recipes and textures.
+
+### Missing or not the same
+- **No spatial dimension.** Horizon mods can't add one. A player in a spatial cell goes to a walled plot far out in the End, so `/tp` and F3 say `minecraft:the_end`. A swap with a player takes up to about a second.
+- **No Java addons.** AE2's Java API isn't available.
+- **Crafting ETA is an estimate:** 1.1% off on average on the test rig, 2.0% at worst.
+- **Nested P2P error** is an approximation.
+- **World height:** parts on cables assume -64 to 319.
+
+The Fluix Researcher and its trades rely on mixins, so they are the part most likely to break on a Horizon update.
+
+### Tested
+Windows, in single player, on LAN with one guest, and on a dedicated server with one client. Other platforms were not tested. Pipes from other mods and speed against the Java mod were not tested.
+
+Textures and models are CC BY-NC-SA 3.0: noncommercial use only."""
+authors = ["AlgorithmX2", "TeamAppliedEnergistics", "Joeypc6"]
+owners = ["Joeypc6"]
+owner_ids = [35495484]
+license = "LGPL-3.0 (code), CC BY-NC-SA 3.0 (textures and models)"
+source = "https://github.com/Joeypc6/AE2-Horizon"
+icon = "https://raw.githubusercontent.com/AppliedEnergistics/Applied-Energistics-2/main/docs/demo-scene.png"
+
+[[versions]]
+version = "15.4.12"
+published = "2026-11-05"
+game = "26.3"
+file = "ae2-15.4.12.hnmod"
+sha256 = "e8ac78984d1da2e1e25b0a56dee6fad8fc89e1ae511754a55747c015229b9dae"
+changelog = "First release on the registry, ported from AE2 15.4.12 (Fabric). Built for Horizon commit 6475f62."
