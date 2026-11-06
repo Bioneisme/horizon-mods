@@ -1,0 +1,20 @@
+id = "chatgpt_blocks"
+kind = "datapack"
+name = "Chatgpt_blocks"
+summary = "Mod"
+description = "Mod yang bisa berinteraksi chatgpt Al technology bisa lakukan"
+authors = []
+owners = ["ridwanwahyu7887-alt"]
+owner_ids = [353238218]
+license = "Mod"
+source = "https://github.com/ridwanwahyu7887-alt/Chatgpt_blocks"
+icon = "icons/chatgpt_blocks.png"
+categories = ["technology", "mobs", "social"]
+screenshots = ["screenshots/chatgpt_blocks/1.png"]
+
+[[versions]]
+version = "1.0.2-neoforge-1.21.1"
+published = "2026-11-06"
+game = "26.3"
+file = "chatgpt_blocks-1.0.2-neoforge-1.21.1.zip"
+sha256 = "fd71a8074e6d32f13d2d8da4f09d745589e69676dec6c7fbee14df2ec31c456c"
