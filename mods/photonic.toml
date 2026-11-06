@@ -1,0 +1,21 @@
+id = "photonic"
+kind = "shaderpack"
+name = "photonic shaders"
+summary = "photon shaders on rust"
+description = "fully working photon shaders port on rust it have some bug bcs of horizon shaders support and the performance are not that good"
+authors = ["relapsee"]
+owners = ["jpasdidee01-stack"]
+owner_ids = [337301835]
+license = "MIT"
+source = "https://github.com/jpasdidee01-stack/photonic-shaders"
+icon = "icons/photonic.png"
+categories = ["realistic", "medium", "shadows"]
+screenshots = ["screenshots/photonic/1.png"]
+
+[[versions]]
+version = "1.1"
+published = "2026-11-06"
+game = "26.3"
+file = "photonic-1.1.zip"
+sha256 = "2bb0564ab7d1a7f5be55aac67ecc88ceb4e62fcee78777e039edcce61219749e"
+changelog = "better performance and less bug"
