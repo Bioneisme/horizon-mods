@@ -1,0 +1,20 @@
+id = "photonic"
+kind = "shaderpack"
+name = "photonic shaders"
+summary = "fully working shaders"
+description = "photonic is a port of photon shaders for horizon rust its still in beta so if you see a bug report it  in my discord username:ashv13."
+authors = ["relapsee"]
+owners = ["jpasdidee01-stack"]
+owner_ids = [337301835]
+license = "idk"
+source = "https://github.com/jpasdidee01-stack/photonic-shaders"
+icon = "icons/photonic.png"
+categories = ["realistic", "medium", "shadows"]
+screenshots = ["screenshots/photonic/1.png"]
+
+[[versions]]
+version = "1.0.0"
+published = "2026-11-06"
+game = "26.3"
+file = "photonic-1.0.0.zip"
+sha256 = "1504c6ad9cdd65fdd994de6253268d24aad8bac7afb6d3b68804fa76d874729e"
