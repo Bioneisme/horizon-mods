@@ -1,0 +1,43 @@
+id = "worldmap"
+kind = "native-mod"
+name = "World Map"
+summary = "A full screen, self-writing world map: cave layers, waypoints, dimensions, teleport and PNG export."
+description = """
+A full screen map that writes itself as you explore.
+
+- **Self-writing map.** The terrain you have seen stays on the map after you leave, kept per world, dimension and cave layer, in the vanilla map colours.
+- **Smooth.** Drag to move, scroll to zoom towards the pointer; far zoom blurs instead of flickering.
+- **Cave layers.** Under a roof, in a cave or in the Nether the map shows the floor round you; layered (a map for each 16 blocks of height) or full, with a Top Y slider from -64 to 319.
+- **Dimensions.** One button shows the Overworld, the Nether or the End from any of them, with the other world's coordinates of the place under the pointer.
+- **Waypoints.** Right-click for a menu: add, rename, 16 colours, three shapes, teleport (/tp), delete. Waypoints show in the world with their name and distance, a waypoint is made where you die, and a list with search (L) finds them.
+- **Also:** the biome under the pointer, other players on the map, go to coordinates (J), a chunk grid, your trail, and an export of the whole map as a PNG.
+- **Keys.** A World Map section in Options > Controls > Key Binds (with Reset), ten keys, all rebindable. Open the map with M.
+- **Russian** interface when the game is in Russian.
+
+**What it does and doesn't do:** it reads the chunks the game has loaded around you and the game's own state, draws on its own screen, and keeps files in `config/worldmap/` (the explored chunks and a waypoints file for each world). It sends `/tp` in chat when you choose Teleport. It makes no network connection and needs no other mod.
+
+**Native mod, pinned** to Horizon Nightly `66f3981` (Minecraft 26.3): it adds rows to the game's Key Binds screen and reuses the minimap's colour scan, so it builds on that revision."""
+authors = ["Px228-Da-Da"]
+owners = ["Px228-Da-Da"]
+owner_ids = [160890712]
+license = "MIT"
+source = "https://github.com/Px228-Da-Da/horizon-worldmap"
+icon = "icons/worldmap.png"
+categories = ["utility", "adventure"]
+tags = ["map", "worldmap", "waypoints", "navigation", "caves", "minimap"]
+screenshots = ["screenshots/worldmap/1.png", "screenshots/worldmap/2.png", "screenshots/worldmap/3.png"]
+
+[[versions]]
+version = "0.5.0"
+published = "2026-11-06"
+game = "26.3"
+file = "worldmap-0.5.0.hnmod"
+sha256 = "970b1186fdcd9f7b479e4a838747489a2f286b7a7dcf5cfff76bc912a2c5c7dd"
+changelog = """
+First public release.
+
+- Self-writing full screen map, kept per world, dimension and cave layer
+- Smooth drag and zoom, cave layers with a Top Y slider, dimension button
+- Waypoints (colours, shapes, teleport, death waypoint) with a searchable list
+- Biome, other players, go to coordinates, chunk grid, PNG export
+- Ten rebindable keys in Key Binds, a settings page, Russian interface"""
