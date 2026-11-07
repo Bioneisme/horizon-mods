@@ -3,7 +3,7 @@ kind = "native-mod"
 name = "Deepbore Quarry"
 summary = "A machine that digs a square pit down to bedrock on furnace fuel and fills a chest, under a moving gantry with a drill."
 description = """
-**This mod has two parts, and you need both.** Install this one, the native part, and [Deepbore Quarry (assets)](https://playhorizon.dev/mods/deepbore_quarry), then press Build. If one is missing, the game says so in chat.
+**One file since 0.1.1.** Install this mod and press Build: its textures, text and recipes ride inside it. The separate [Deepbore Quarry (assets)](https://playhorizon.dev/mods/deepbore_quarry) entry is no longer needed; if you already have it, it does no harm.
 
 - **Place** a quarry. The pit lies beyond it, the way you are looking, and goes from the quarry's own level down to bedrock.
 - **Put a chest** against another side of it, and fuel in its slot: anything a furnace burns. One coal digs eight blocks.
@@ -27,6 +27,14 @@ icon = "icons/deepbore_quarry_native.png"
 categories = ["technology"]
 tags = ["quarry", "mining", "machine", "automation", "digging"]
 screenshots = ["screenshots/deepbore_quarry_native/1.jpg", "screenshots/deepbore_quarry_native/2.jpg", "screenshots/deepbore_quarry_native/3.jpg", "screenshots/deepbore_quarry_native/4.png"]
+
+[[versions]]
+version = "0.1.1"
+published = "2026-11-07"
+game = "26.3"
+file = "deepbore_quarry_native-0.1.1.hnmod"
+sha256 = "be5d89da37ffe354dcc5edbb9b69a19566dd909fd91ab87deedf597b99547b4f"
+changelog = "One file: the assets (textures, text, recipes) are embedded, so the separate deepbore_quarry entry is no longer needed. Clickable links in the chat warnings. Still pinned to Nightly 2026-11-04 (67dad0d) and Horizon Mixins e8cd0aa."
 
 [[versions]]
 version = "0.1.0"
