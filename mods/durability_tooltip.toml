@@ -1,0 +1,72 @@
+id = "durability_tooltip"
+kind = "native-mod"
+name = "Durability Tooltip"
+summary = "Displays item durability values, percentages, and color indicators directly in tooltips."
+description = """
+# Durability Tooltip
+
+A lightweight native Rust mod for Horizon Minecraft that displays accurate durability information directly inside item tooltips.
+
+See exactly how much durability your equipment has left without opening the debug screen or using additional overlays.
+
+## Features
+
+- **Precise Durability:** Displays remaining and maximum durability, including the percentage.
+- **Color Indicators:** Green for healthy equipment, yellow for moderately damaged items, and red for critically damaged items.
+- **Wide Item Support:** Works with tools, weapons, armor, shields, elytra, and other damageable items.
+- **Localization:** Uses Minecraft's built-in translations to support different languages.
+- **Clean Tooltips:** Avoids duplicating standard advanced durability information.
+- **In-Game Toggle:** Enable or disable the mod through Horizon's mod settings.
+- **Lightweight:** Runs entirely on the client, without background polling.
+
+## Example
+
+Durability: 847 / 1561 (54%)
+
+## Installation
+
+1. Install Durability Tooltip through the Horizon Launcher.
+2. Build your Horizon instance with the mod enabled.
+3. Launch Minecraft.
+4. Hover over any damageable item to see its remaining durability.
+
+## Compatibility
+
+- Minecraft Java Edition 26.3
+- Horizon Native Mod API
+- Client-side only
+
+## Technical Information
+
+Built independently in Rust using Horizon's native tooltip hooks.
+
+The mod does not require server installation, modify item statistics, collect user data, or make network requests.
+
+**Source code:** https://github.com/maliferen/horizon-durability-tooltip
+
+**License:** MIT"""
+authors = ["Xariami"]
+owners = ["maliferen"]
+owner_ids = [234505373]
+license = "MIT"
+source = "https://github.com/maliferen/horizon-durability-tooltip"
+icon = "icons/durability_tooltip.png"
+categories = ["utility", "equipment", "game-mechanics"]
+tags = ["durability", "tooltip", "equipment", "utility", "client-side", "quality-of-life", "rust"]
+screenshots = ["screenshots/durability_tooltip/1.png", "screenshots/durability_tooltip/2.png", "screenshots/durability_tooltip/3.png"]
+
+[[versions]]
+version = "0.2.0"
+published = "2026-11-07"
+game = "26.3"
+file = "durability_tooltip-0.2.0.hnmod"
+sha256 = "fb29276ad1ddb2bf621fe0310c891687f8b1d6faaa2f09d773b72f3aecd6e5e0"
+changelog = """
+Initial release of Durability Tooltip for Horizon Minecraft.
+
+- Displays remaining and maximum item durability directly in tooltips.
+- Shows durability percentages with color-coded indicators.
+- Supports tools, weapons, armor, and other damageable items.
+- Supports Minecraft's built-in localization.
+- Includes an in-game ON/OFF toggle.
+- Lightweight, client-side Rust implementation."""
