@@ -1,4 +1,5 @@
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -53,6 +54,74 @@ class Pick(unittest.TestCase):
     def test_broken_on_another_commit_still_builds(self):
         picked = native_build.pick(INDEX, ["broken"], "1" * 40)
         self.assertEqual(picked[0]["version"], "1.0.0")
+
+
+SETS = """
+[[set]]
+name = "Two"
+mods = ["zoom", "minimap@1.4.0"]
+
+[[set]]
+name = "One"
+mods = ["zoom"]
+"""
+LINUX = "x86_64-unknown-linux-gnu"
+MAC = "aarch64-apple-darwin"
+ZOOM = {"id": "zoom", "version": "2.0.0", "sha256": "b" * 64}
+MINIMAP = {"id": "minimap", "version": "1.4.0", "sha256": "a" * 64}
+
+
+def key(target, *mods):
+    return native_build.request_key(target, BASE, [(m["id"], m["version"], m["sha256"]) for m in mods])
+
+
+class OnlyListedSets(unittest.TestCase):
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.sets = Path(tmp.name) / "prebuilt.toml"
+        self.sets.write_text(SETS)
+
+    def test_plan_takes_a_listed_set_in_any_order(self):
+        self.assertEqual(native_build.listed(["minimap@1.4.0", "zoom"], self.sets), ["minimap@1.4.0", "zoom"])
+
+    def test_plan_refuses_any_other_set(self):
+        for wanted in (["minimap"], ["zoom", "minimap"], ["zoom", "minimap@1.4.0", "keystrokes"], ["zoom@2.0.0"], []):
+            with self.assertRaises(ValueError, msg=wanted):
+                native_build.listed(wanted, self.sets)
+
+    def test_sign_recomputes_each_rows_key(self):
+        matrix = [{"target": LINUX, "key": key(LINUX, ZOOM, MINIMAP), "archive": "ignored"},
+                  {"target": MAC, "key": key(MAC, ZOOM, MINIMAP)}]
+        self.assertEqual(native_build.signable(BASE, [ZOOM, MINIMAP], matrix, self.sets),
+                         [(key(LINUX, ZOOM, MINIMAP), LINUX), (key(MAC, ZOOM, MINIMAP), MAC)])
+
+    def test_sign_refuses_another_sets_key(self):
+        # A row naming the key of `zoom` alone, in a run of the two-mod set: H1 of the review.
+        with self.assertRaises(ValueError):
+            native_build.signable(BASE, [ZOOM, MINIMAP], [{"target": LINUX, "key": key(LINUX, ZOOM)}], self.sets)
+        # Another target's key on this row.
+        with self.assertRaises(ValueError):
+            native_build.signable(BASE, [ZOOM], [{"target": LINUX, "key": key(MAC, ZOOM)}], self.sets)
+
+    def test_sign_refuses_mods_or_rows_outside_the_rules(self):
+        good = [{"target": LINUX, "key": key(LINUX, ZOOM)}]
+        cases = [
+            ("1" * 39, [ZOOM], good),                                     # not a commit
+            (BASE, [], good),                                             # no mods
+            (BASE, [dict(ZOOM, id="zoom\nmod x")], good),                # a line break in an id
+            (BASE, [dict(ZOOM, version="2.0 0")], good),                  # a space in a version
+            (BASE, [dict(ZOOM, sha256="B" * 64)], good),                  # not lowercase hex
+            (BASE, [MINIMAP], [{"target": LINUX, "key": key(LINUX, MINIMAP)}]),  # minimap alone isn't listed
+            (BASE, [dict(MINIMAP, version="1.5.0"), ZOOM],                # the set pins minimap 1.4.0
+             [{"target": LINUX, "key": key(LINUX, dict(MINIMAP, version="1.5.0"), ZOOM)}]),
+            (BASE, [ZOOM], good + good),                                  # a target twice
+            (BASE, [ZOOM], [{"target": "x86_64-unknown-freebsd", "key": key("x86_64-unknown-freebsd", ZOOM)}]),
+            (BASE, [ZOOM], {"target": LINUX}),                            # not a list
+        ]
+        for base, mods, matrix in cases:
+            with self.assertRaises(ValueError, msg=(base, mods, matrix)):
+                native_build.signable(base, mods, matrix, self.sets)
 
 
 class Sets(unittest.TestCase):

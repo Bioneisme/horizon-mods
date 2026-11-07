@@ -4,6 +4,7 @@
     python3 scripts/native_build.py sets [--sets prebuilt.toml]          # one line per set: its mods
     python3 scripts/native_build.py plan --mods "zoom minimap@2.0.0" [--base latest|nightly-<date>-<short>]
                                          [--targets all|<triple>,...] --out plan/
+    BASE=<40 hex> MODS=<json> MATRIX=<json> python3 scripts/native_build.py signable   # sign job: "key target" lines
 
 `plan` resolves one set for one base: the Nightly (its tag for the launcher, its 40-hex commit for the key),
 each mod against the published index (its newest version unless `@version` names one; refused when unknown,
@@ -11,13 +12,20 @@ revoked, or `broken_on` that commit), and each target's request key (horizon_rel
 the same text, so the launcher looks up what CI built). Targets already published are left out. It writes
 plan/plan.json and downloads each mod's file into plan/hnmods/, checked against the index's SHA-256.
 
-A run builds ONE set: every build job of a run belongs to it, so a mod's build script, which runs in that
-job, can only ever replace a build of its own set (sign signs what the plan says, never what a build says).
+A run builds ONE set, and only a set prebuilt.toml lists (exactly its items): nobody can dispatch a signed build
+of any other mix of registry mods. Every build job of a run belongs to that set, so a mod's build script, which
+runs in that job, can only ever replace a build of its own set.
+
+`signable` is what the sign job (which holds the key) signs: it reads only the plan job's outputs (job outputs,
+which no later job can rewrite; never the `plan` artifact, which a build job can), checks again that the mods are a
+prebuilt.toml set, recomputes every row's key from the base, the mods and the row's target, and prints
+`<key> <target>` per row. The sign job derives every file name from those two.
 """
 import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import tomllib
 import urllib.error
@@ -39,6 +47,12 @@ TARGETS = {
     "x86_64-apple-darwin": ("macos-15-intel", "horizon-launcher-macos-x64.zip"),
 }
 MAX_MODS = 64
+SETS = ROOT / "prebuilt.toml"
+# horizon_release_sign::native_build's field rules: what the launcher accepts in a request.
+ID = re.compile(r"[a-z0-9_-]+")
+VERSION = re.compile(r"[!-~]+")
+HEX40 = re.compile(r"[0-9a-f]{40}")
+HEX64 = re.compile(r"[0-9a-f]{64}")
 
 
 def request_text(target, base, mods):
@@ -124,10 +138,18 @@ def pick(index, wanted, commit):
     return picked
 
 
+def listed(wanted, sets_path=SETS):
+    """`wanted` (its `id[@version]` items) if it is exactly one set of prebuilt.toml, else ValueError."""
+    if sorted(wanted) not in [sorted(line.split()) for line in sets(sets_path)]:
+        raise ValueError(f"{' '.join(wanted) or '(nothing)'}: not a set of prebuilt.toml; only those are built")
+    return wanted
+
+
 def plan(mods, base, targets, out):
+    wanted = listed(mods.split())
     tag, commit = nightly(base)
     index = json.loads(get(INDEX, token=False))
-    picked = pick(index, mods.split(), commit)
+    picked = pick(index, wanted, commit)
     out.mkdir(parents=True, exist_ok=True)
     hnmods = out / "hnmods"
     hnmods.mkdir(exist_ok=True)
@@ -157,6 +179,43 @@ def plan(mods, base, targets, out):
     return result
 
 
+def signable(base, mods, matrix, sets_path=SETS):
+    """[(key, target)] the sign job may sign, from the plan job's outputs only (see the module's doc)."""
+    if not isinstance(base, str) or not HEX40.fullmatch(base):
+        raise ValueError(f"{base!r}: not a 40-hex commit")
+    if not isinstance(mods, list) or not mods:
+        raise ValueError("no mods")
+    request = []
+    for m in mods:
+        i, v, s = (m.get(k) if isinstance(m, dict) else None for k in ("id", "version", "sha256"))
+        if not (isinstance(i, str) and ID.fullmatch(i) and isinstance(v, str) and VERSION.fullmatch(v)
+                and isinstance(s, str) and HEX64.fullmatch(s)):
+            raise ValueError(f"{m!r}: not a mod (id, version, sha256)")
+        request.append((i, v, s))
+    ids = [i for i, _, _ in request]
+    if len(set(ids)) != len(ids) or len(ids) > MAX_MODS:
+        raise ValueError("a mod is listed twice, or too many mods")
+    versions = dict((i, v) for i, v, _ in request)
+    for line in sets(sets_path):
+        items = [item.partition("@") for item in line.split()]
+        if sorted(i for i, _, _ in items) == sorted(ids) and all(not v or versions[i] == v for i, _, v in items):
+            break
+    else:
+        raise ValueError(f"{' '.join(sorted(ids))}: not a set of prebuilt.toml")
+    if not isinstance(matrix, list):
+        raise ValueError("the matrix is not a list")
+    rows, seen = [], set()
+    for row in matrix:
+        target, key = (row.get(k) if isinstance(row, dict) else None for k in ("target", "key"))
+        if target not in TARGETS or target in seen:
+            raise ValueError(f"{target!r}: not a target, or twice")
+        seen.add(target)
+        if key != request_key(target, base, request):
+            raise ValueError(f"{target}: the matrix's key {key!r} isn't this set's")
+        rows.append((key, target))
+    return rows
+
+
 def sets(path):
     """Each set of prebuilt.toml as one line of space-separated `id[@version]`."""
     data = tomllib.loads(path.read_text())
@@ -179,9 +238,18 @@ def main():
     p.add_argument("--base", default="latest")
     p.add_argument("--targets", default="all")
     p.add_argument("--out", type=Path, required=True)
+    sub.add_parser("signable")
     args = parser.parse_args()
     if args.command == "sets":
         print("\n".join(sets(args.sets)))
+        return
+    if args.command == "signable":
+        try:
+            env = {k: json.loads(os.environ[k]) for k in ("MODS", "MATRIX")}
+            rows = signable(os.environ["BASE"], env["MODS"], env["MATRIX"])
+        except (KeyError, ValueError) as e:
+            sys.exit(f"signable: {e}")
+        print("\n".join(f"{key} {target}" for key, target in rows))
         return
     try:
         result = plan(args.mods, args.base, args.targets, args.out)
@@ -189,8 +257,12 @@ def main():
         sys.exit(str(e))
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            # The sign job reads these job outputs, never the plan artifact (a build job can replace that).
             f.write(f"matrix={json.dumps(result['builds'])}\n")
             f.write(f"any={'true' if result['builds'] else 'false'}\n")
+            f.write(f"tag={result['tag']}\n")
+            f.write(f"base={result['base']}\n")
+            f.write(f"mods={json.dumps(result['mods'])}\n")
 
 
 if __name__ == "__main__":
