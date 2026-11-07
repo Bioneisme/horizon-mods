@@ -1,0 +1,211 @@
+# Prebuilt native builds (horizon#11859): the game compiled for one exact set of registry native mods, signed, so
+# players' launchers download it instead of compiling for 30 to 60 minutes.
+# - Every day after the Nightly, `dispatch` starts one run per set of prebuilt.toml on the newest Nightly.
+# - A run builds ONE set (`mods`) for every target, on GitHub's runners only:
+#   plan  (no secrets): resolves the Nightly and each mod against the published index (newest unrevoked version,
+#         not broken_on that commit), computes each target's request key as the launcher does, leaves out what is
+#         published, downloads the mods' files and the launcher release named by vars.NATIVE_BUILD_LAUNCHER and
+#         checks that release's signed SHA256SUMS against Horizon's release keys.
+#   build (no secrets, a token that can only read, no cache): runs that launcher headless
+#         (`native-build --prebuilt-out`): its pinned Rust, the Nightly's source, the release profile, the same
+#         pins, hook points and left-out mods as a player's build. A mod crate's build script runs here, so the job
+#         holds nothing worth stealing, and it shares no cache another set's build could restore.
+#   sign  (environment `native-builds`, main only): runs only Horizon's tools/ci/sign_native_build.sh (sha256sum
+#         and OpenSSL) on the archives, for the keys and targets the PLAN names, never what a build says, then
+#         uploads archive + signature to the release native-builds-<base12>. A build can only ever be signed as its
+#         own set, and every build of a run belongs to that set.
+name: native-build
+on:
+  schedule:
+    - cron: "30 19 * * *"
+  workflow_dispatch:
+    inputs:
+      mods:
+        description: "One set: native mod ids, `id` or `id@version`, space-separated. Empty: every set of prebuilt.toml (one run each)"
+        default: ""
+      base:
+        description: "The Nightly: `latest` or nightly-<date>-<short>"
+        default: latest
+      targets:
+        description: "`all`, or target triples separated by commas"
+        default: all
+permissions:
+  contents: read
+concurrency:
+  group: native-build-${{ inputs.mods || 'dispatch' }}-${{ inputs.base || 'latest' }}
+  cancel-in-progress: false
+env:
+  # A launcher release with `native-build --prebuilt-out` (Horizon #11859), e.g. launcher@0.2.50.
+  LAUNCHER: ${{ vars.NATIVE_BUILD_LAUNCHER }}
+  # The Horizon commit whose release keys check that launcher and whose script signs.
+  HORIZON_REV: ${{ vars.HORIZON_REV || 'main' }}
+jobs:
+  dispatch:
+    # Idle until a launcher with native-build --prebuilt-out is released and named.
+    if: (github.event_name == 'schedule' || inputs.mods == '') && vars.NATIVE_BUILD_LAUNCHER != ''
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: One run per set
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ inputs.base || 'latest' }}
+        run: |
+          python3 scripts/native_build.py sets | while read -r set; do
+            echo "native-build: $set"
+            gh workflow run native-build.yml --repo "$GITHUB_REPOSITORY" --ref main -f mods="$set" -f base="$BASE"
+          done
+  plan:
+    if: github.event_name == 'workflow_dispatch' && inputs.mods != ''
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      any: ${{ steps.plan.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest scripts/test_native_build.py
+      - id: plan
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MODS: ${{ inputs.mods }}
+          BASE: ${{ inputs.base }}
+          TARGETS: ${{ inputs.targets }}
+        run: python3 scripts/native_build.py plan --mods "$MODS" --base "$BASE" --targets "$TARGETS" --out plan
+      - name: The launcher, checked against Horizon's release keys
+        if: steps.plan.outputs.any == 'true'
+        run: |
+          set -euo pipefail
+          [ -n "$LAUNCHER" ] || { echo "::error::vars.NATIVE_BUILD_LAUNCHER names no launcher release"; exit 1; }
+          mkdir -p plan/launcher && cd plan/launcher
+          base="https://github.com/horizon-rust/horizon/releases/download/$LAUNCHER"
+          curl -sSfLO "$base/SHA256SUMS" && curl -sSfLO "$base/SHA256SUMS.sig"
+          for asset in $(jq -r '.builds[].launcher' ../plan.json | sort -u); do curl -sSfLO "$base/$asset"; done
+          curl -sSfL "https://raw.githubusercontent.com/horizon-rust/horizon/$HORIZON_REV/crates/horizon-release-sign/release-keys.txt" \
+            | grep -v '^#' | grep . > keys
+          { printf 'horizon release %s\n' "$LAUNCHER"; cat SHA256SUMS; } > message
+          ok=
+          while read -r key; do
+            { printf '\x30\x2a\x30\x05\x06\x03\x2b\x65\x70\x03\x21\x00'; echo "$key" | base64 -d; } > pub.der
+            while read -r sig; do
+              echo "$sig" | base64 -d > sig.bin
+              openssl pkeyutl -verify -rawin -pubin -keyform DER -inkey pub.der -in message -sigfile sig.bin >/dev/null 2>&1 && ok=1
+            done < SHA256SUMS.sig
+          done < keys
+          [ -n "$ok" ] || { echo "::error::$LAUNCHER: SHA256SUMS isn't signed by a Horizon release key"; exit 1; }
+          sha256sum --ignore-missing -c SHA256SUMS
+          rm -f message pub.der sig.bin keys SHA256SUMS SHA256SUMS.sig
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plan
+          path: plan
+  build:
+    needs: plan
+    if: needs.plan.outputs.any == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.plan.outputs.matrix) }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 180
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: plan
+          path: plan
+      - if: runner.os == 'Linux'
+        # The game's ALSA and udev headers; the launcher links xkbcommon and xcb even headless.
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libudev-dev pkg-config libxkbcommon-x11-0 libxcb1
+      - name: Build the set as a player's launcher would
+        env:
+          TARGET: ${{ matrix.target }}
+          KEY: ${{ matrix.key }}
+          LAUNCHER_ASSET: ${{ matrix.launcher }}
+          ARCHIVE: ${{ matrix.archive }}
+        run: |
+          set -euo pipefail
+          scratch="$RUNNER_TEMP/native"
+          mkdir -p "$scratch/launcher" "$scratch/out"
+          case "$LAUNCHER_ASSET" in
+            *.tar.gz) tar xzf "plan/launcher/$LAUNCHER_ASSET" -C "$scratch/launcher"; launcher="$scratch/launcher/horizon-launcher" ;;
+            *macos*) unzip -q "plan/launcher/$LAUNCHER_ASSET" -d "$scratch/launcher"; launcher="$scratch/launcher/Horizon.app/Contents/MacOS/horizon-launcher" ;;
+            *) unzip -q "plan/launcher/$LAUNCHER_ASSET" -d "$scratch/launcher"; launcher="$scratch/launcher/horizon-launcher.exe" ;;
+          esac
+          export HORIZON_LAUNCHER_HOME="$scratch/home" HORIZON_HOME="$scratch/game" XDG_DATA_HOME="$scratch/data" \
+            XDG_CONFIG_HOME="$scratch/config" HORIZON_LAUNCHER_NO_SELF_UPDATE=1 HORIZON_NO_AUDIO=1
+          py=$(command -v python3 || command -v python)  # Windows runners name it python
+          tag=$("$py" -c 'import json; print(json.load(open("plan/plan.json"))["tag"])')
+          "$launcher" install "$tag"
+          "$launcher" native-build --prebuilt-out "$scratch/out/build" --version "$tag" --profile release \
+            --trust-native-code plan/hnmods
+          got=$("$py" -c 'import hashlib,sys; print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())' "$scratch/out/build/request.txt")
+          [ "$got" = "$KEY" ] || { echo "::error::the launcher built request $got, the plan asked for $KEY"; exit 1; }
+          mkdir -p dist
+          tar czf "dist/$ARCHIVE" -C "$scratch/out/build" .
+          ls -l dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.target }}
+          path: dist/${{ matrix.archive }}
+          if-no-files-found: error
+  sign:
+    needs: [plan, build]
+    if: always() && needs.plan.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    environment: native-builds
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: horizon-rust/horizon
+          ref: ${{ env.HORIZON_REV }}
+          sparse-checkout: |
+            tools/ci/sign_native_build.sh
+            crates/horizon-release-sign/native-build-keys.txt
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+          path: horizon
+      - uses: actions/download-artifact@v4
+        with:
+          name: plan
+          path: plan
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: build-*
+          path: dist
+          merge-multiple: true
+      - name: Sign what the plan asked for, then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          NATIVE_BUILD_SIGNING_KEY: ${{ secrets.NATIVE_BUILD_SIGNING_KEY }}
+          NATIVE_BUILD_SIGNING_KEY_NEXT: ${{ secrets.NATIVE_BUILD_SIGNING_KEY_NEXT }}
+        run: |
+          set -euo pipefail
+          release=$(jq -r .release plan/plan.json)
+          if ! gh release view "$release" >/dev/null 2>&1; then
+            gh release create "$release" --prerelease --latest=false --title "Prebuilt native builds on $(jq -r .tag plan/plan.json)" \
+              --notes "The game built with registry native mods on Horizon $(jq -r .base plan/plan.json), signed by native-build.yml (horizon#11859). The Horizon launcher downloads and checks these; nothing here is for downloading by hand."
+          fi
+          missing=0
+          for row in $(jq -c '.builds[]' plan/plan.json); do
+            key=$(jq -r .key <<< "$row"); target=$(jq -r .target <<< "$row")
+            archive=$(jq -r .archive <<< "$row"); sig=$(jq -r .signature <<< "$row")
+            if [ ! -f "dist/$archive" ]; then echo "::warning::$target: no build"; missing=1; continue; fi
+            bash horizon/tools/ci/sign_native_build.sh "$key" "$target" "dist/$archive"
+            # The signature last: the launcher looks for it first, so a half-uploaded build is never offered.
+            gh release upload "$release" "dist/$archive"
+            gh release upload "$release" "dist/$sig"
+          done
+          exit $missing
