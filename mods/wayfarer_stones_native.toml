@@ -3,7 +3,7 @@ kind = "native-mod"
 name = "Wayfarer Stones"
 summary = "Place stones around your world, activate them, and travel between the ones you know."
 description = """
-**This mod has two parts, and you need both.** Install this one and [Wayfarer Stones (assets)](https://playhorizon.dev/mods/wayfarer_stones), then press Build.
+**One file since 0.6.2:** the textures, text, recipes and villages are inside it, so [Wayfarer Stones (assets)](https://playhorizon.dev/mods/wayfarer_stones) is no longer needed. Install this one and press Build.
 
 - **Place** a stone, or find one in a village. Right-click it once to add it to your list.
 - **Travel** from any stone you know: pick a destination on the screen, or search for it. You land beside the stone, on solid ground.
@@ -26,6 +26,14 @@ source = "https://github.com/Bioneisme/wayfarer-stones"
 icon = "icons/wayfarer_stones_native.png"
 categories = ["transportation", "adventure"]
 tags = ["teleport", "waystones", "fast-travel", "villages"]
+
+[[versions]]
+version = "0.6.2"
+published = "2026-11-07"
+game = "26.3"
+file = "wayfarer_stones_native-0.6.2.hnmod"
+sha256 = "499046c4a416a5f09eb3db7dd4c2a8c7176f1326bab9360127b98670406a5cbc"
+changelog = "One file: the textures, models, text, recipes, loot and villages ride inside the native mod, so the separate assets mod is no longer needed (a copy you already have still works, and wins). Pinned to Nightly 2026-11-04 (67dad0d) and Horizon Mixins e8cd0aa."
 
 [[versions]]
 version = "0.6.1"
