@@ -1,0 +1,20 @@
+id = "structures"
+kind = "mod"
+name = "Structures for Minecraft Rust"
+summary = "structures"
+description = "33 structure house and tower chest and.............. "
+authors = []
+owners = ["mhamddiamond10-spec"]
+owner_ids = [353844915]
+license = "structures"
+source = "https://github.com/mhamddiamond10-spec/structure"
+icon = "icons/structures.png"
+categories = ["worldgen"]
+
+[[versions]]
+version = "0.6.0"
+published = "2026-11-07"
+game = "26.3"
+file = "structures-0.6.0.hmod"
+sha256 = "1527813ad55062365bab7751acd274194bf16f1907bce2d638f17d84cea43786"
+changelog = "structures"
