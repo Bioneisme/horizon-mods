@@ -20,8 +20,15 @@ owners = ["tariksabanuz"]
 license = "MIT"
 source = "https://github.com/tariksabanuz/ContinuityHorizon"
 icon = "icons/connected_textures.png"
-categories = ["decoration", "utility"]
+categories = ["decoration", "utility", "management"]
 tags = ["connected-textures", "glass", "visual", "port"]
+
+[[versions]]
+version = "0.1.5"
+published = "2026-11-07"
+game = "26.3"
+file = "connected_textures-0.1.5.hnmod"
+sha256 = "7ac9e7860c32bdf199bc55ab1bb61d403be79a7e481352ebbafb1708860de37d"
 
 [[versions]]
 version = "0.1.2"
