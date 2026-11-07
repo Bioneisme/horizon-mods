@@ -1,0 +1,48 @@
+id = "sunset"
+kind = "native-mod"
+name = "Sunset"
+summary = "A native utility and PvP client for Horizon, featuring customizable modules, combat automation and a built-in ClickGUI."
+description = '''
+A native utility and PvP client for Horizon, featuring customizable modules, combat automation and a built-in ClickGUI.
+
+Description
+
+Sunset is a native Rust-based utility and PvP client for Horizon, designed for Minecraft 26.3.
+
+It provides modules across six categories: Combat, Movement, Player, Render, World and Client. Features include combat automation, movement utilities, inventory management, HUD elements, world detection tools and extensive customization.
+
+**Controls**
+
+- Press Right Shift or \` to open the ClickGUI.
+- Left-click a module to enable or disable it.
+- Right-click a module to configure its settings and keybind.
+- Use `.help` in chat to see available commands.
+
+**Installation**
+
+Install Sunset through the Horizon Mod Registry once approved, or follow the manual installation instructions in the source repository.
+
+**License**
+
+Sunset is licensed under PolyForm Strict 1.0.0, with additional permissions explicitly granted to Horizon for source review, testing and distribution of official, unmodified releases.
+
+Full license: [https://github.com/PointOfPressure/sunset-client/blob/main/LICENSE](https://github.com/PointOfPressure/sunset-client/blob/main/LICENSE)
+
+Website: [https://sunset-client.pages.dev](https://sunset-client.pages.dev)'''
+authors = ["pointofpressure", "vstxx0", "mhofd"]
+owners = ["PointOfPressure"]
+owner_ids = [191872611]
+license = "Polyform Strict"
+source = "https://github.com/PointOfPressure/sunset-client"
+icon = "icons/sunset.png"
+categories = ["utility"]
+tags = ["utility"]
+screenshots = ["screenshots/sunset/1.png", "screenshots/sunset/2.png", "screenshots/sunset/3.png", "screenshots/sunset/4.png", "screenshots/sunset/5.png"]
+
+[[versions]]
+version = "1.0.0"
+published = "2026-11-07"
+game = "26.3"
+file = "sunset-1.0.0.hnmod"
+sha256 = "4d912c32862a0a45b5690e985d8140a6fafe8bd3e19d498c478d36a23619960e"
+changelog = "First stable release of sunset"
