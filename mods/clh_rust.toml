@@ -1,0 +1,35 @@
+id = "clh_rust"
+kind = "native-mod"
+name = "Сhunk Limiter HUD"
+summary = "Displays configurable limits for blocks and entities in the player's current chunk."
+description = """
+Chunk Limiter HUD
+Chunk Limiter HUD is a client-side Fabric mod that counts configured blocks and entities in the player's current chunk.
+
+Features
+- Configurable limits for blocks and entities
+- Custom groups with shared limits
+- Dark HUD with block and spawn egg icons
+- Remaining capacity display
+- Red highlighting for overloaded blocks and entities
+- In-game configuration menu
+- Mod Menu integration
+- No server-side installation required
+
+Controls
+L — open the configuration menu
+O — toggle the HUD"""
+authors = []
+owners = ["vegetableovosh"]
+owner_ids = [60011428]
+license = "CC0-1.0"
+source = "https://github.com/vegetableovosh/CLH-RUST"
+icon = "icons/clh_rust.png"
+categories = ["utility"]
+
+[[versions]]
+version = "0.1.0"
+published = "2026-11-07"
+game = "26.3"
+file = "clh_rust-0.1.0.hnmod"
+sha256 = "610cdbd6d626d1731ca9f910f9d75b97a97c54d51fbcb89db31d7bb466875343"
