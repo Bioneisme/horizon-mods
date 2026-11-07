@@ -1,0 +1,30 @@
+id = "strangely_charming"
+kind = "native-mod"
+name = "Strangely Charming"
+summary = "An exploration and quality-of-life mod"
+description = """
+A collection of crafting, exploration and village features for Horizon. Each feature defaults to enabled and can be turned off in config/strangely_charming.json. Modpack makers are encouraged to prune features they feel are overpowered or conflict with other mods.
+
+See github for full description and features list: https://github.com/rewenx/strangely-charming/blob/main/README.md"""
+authors = ["Evander"]
+owners = ["rewenx"]
+owner_ids = [28968821]
+license = "MIT"
+source = "https://github.com/rewenx/strangely-charming"
+icon = "icons/strangely_charming.png"
+categories = ["adventure", "game-mechanics", "magic"]
+tags = ["travel", "exploration", "magic"]
+key = "RWSkBUzm8z4gS6fdcLKUGMqX1Ec5Bm6rPL36Tr/RCnBIwgu6eEavthaF"
+
+[[versions]]
+version = "0.2.10"
+published = "2026-11-07"
+game = "26.3"
+file = "strangely_charming-0.2.10.hnmod"
+sha256 = "43dabc2d867ebcc420fa4cba73ccacaca9ab633b7b044b153d583388580ed128"
+signature = """
+untrusted comment: signature from minisign secret key
+RUSkBUzm8z4gS6VGeLJFYK6SqGuzO818dd+RQzOjPRR4HhSJqultG4G+8lgbEZt/zspKlN9efACDP4wPFFRWF/tkOt+nKoEhXQk=
+trusted comment: Strangely Charming v0.2.10; SHA-256 43dabc2d867ebcc420fa4cba73ccacaca9ab633b7b044b153d583388580ed128
+iLNVyuwEncGB+gvV4UWea+FI6GvFWf7+xOOqsMudv6hwN/8vnKUHgcGZJpU1ATFwBjeDHa8AMJa/GDYZsRE5DA=="""
+changelog = "initial upload"
