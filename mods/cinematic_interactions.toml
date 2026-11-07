@@ -1,0 +1,51 @@
+id = "cinematic_interactions"
+kind = "native-mod"
+name = "CinematicInteractionsHorizon"
+summary = "CinematicInteractions for Horizon"
+description = """
+# Cinematic Interactions for Horizon
+
+Cinematic Interactions transforms ordinary Minecraft interactions into immersive, animated experiences directly within the game world.
+
+Instead of interacting with traditional inventory screens, you physically interact with crafting and utility stations. Your camera smoothly moves into position, cinematic black bars appear, and your character's hands become part of the interaction.
+
+**Features**
+
+- **Cinematic Crafting:** Interact with crafting tables through a fully animated 3D crafting experience.
+- **Custom Hand Animations:** See your character's own hands and skin interact with items and workstations.
+- **Immersive Workstations:** Experience furnaces, anvils, enchanting tables, smithing tables, brewing stands, stonecutters, beacons and more in the actual game world.
+- **Recipe Guide:** Browse recipes, check available ingredients and automatically lay out crafting materials.
+- **Interactive Animations:** Enjoy animated crafting results, enchanting effects, hammer strikes, particles and other visual details.
+- **Seamless Interactions:** Move between nearby workstations without having to reopen traditional menus.
+- **Customizable Settings:** Enable or disable cinematic bars and control hints, and adjust camera movement speed.
+
+**How to Use**
+
+1. Install Cinematic Interactions for Horizon.
+2. Make sure you are using the Performance build in the Horizon launcher.
+3. Launch the game and approach a supported workstation.
+4. Right-click a workstation to start its cinematic interaction.
+5. Use the displayed controls to interact with items, recipes and workstation features.
+
+You can enable or disable the mod and customize its settings under **Options → Mods → Cinematic Interactions**.
+
+**Requirements**
+- Horizon (Rust version of Minecraft: Java Edition 26.3).
+- Horizon Performance build.
+
+Cinematic Interactions brings a more immersive, interactive and cinematic way to experience everyday Minecraft mechanics."""
+authors = ["tariksabanuz"]
+owners = ["tariksabanuz"]
+owner_ids = [332662152]
+license = "MIT"
+source = "https://github.com/tariksabanuz/CinematicInteractionsHorizon"
+icon = "icons/cinematic_interactions.png"
+categories = ["game-mechanics", "optimization", "technology"]
+tags = ["animation", "interaction", "menu", "mod", "cinematic"]
+
+[[versions]]
+version = "0.12.0"
+published = "2026-11-07"
+game = "26.3"
+file = "cinematic_interactions-0.12.0.hnmod"
+sha256 = "d3e919e7f96331123e00875b56f68773827c9640a81d20dbb114146b7c265f75"
