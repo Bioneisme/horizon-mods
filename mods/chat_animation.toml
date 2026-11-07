@@ -19,8 +19,15 @@ owners = ["tariksabanuz"]
 license = "MIT"
 source = "https://github.com/tariksabanuz/ChatAnimationHorizon"
 icon = "icons/chat_animation.png"
-categories = ["utility", "social"]
+categories = ["utility", "social", "management"]
 tags = ["chat", "animation", "ui", "port"]
+
+[[versions]]
+version = "0.1.1"
+published = "2026-11-07"
+game = "26.3"
+file = "chat_animation-0.1.1.hnmod"
+sha256 = "f78e288123db11850a7f2cb2b4e0d4e62ff2b34ed731a181ee169ad48de3f099"
 
 [[versions]]
 version = "0.1.0"
