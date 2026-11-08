@@ -1,0 +1,50 @@
+id = "meteor_horizon"
+kind = "native-mod"
+name = "Meteor for Horizon"
+summary = "Meteor Client ported to Horizon: every module, the ClickGUI, the HUD and commands. Unofficial."
+description = """
+[Meteor Client](https://github.com/MeteorDevelopment/meteor-client) ported to Horizon as a native mod: all 169 of Meteor's modules with every setting, the ClickGUI, the HUD and its editor, commands, Starscript, friends, macros, profiles, waypoints, markers, accounts and proxies.
+
+An unofficial port of Meteor Client `e3a2e77`. It is not made, endorsed or supported by Meteor Development or by the Horizon project. The original is the work of [Meteor Development](https://github.com/MeteorDevelopment) (MineGame159, squidoodly, seasnail and the contributors).
+
+**It has combat and movement modules, and many servers ban utility mods: use it where it is allowed.**
+
+## Usage
+
+Turn it on in the launcher's Mods tab and press **Build**. The first build takes a few minutes.
+
+Open the ClickGUI with **Right Shift**. Commands start with `.` (`.commands` lists them). Everything is saved in `meteor-client/` in the game folder, in Meteor's own NBT files.
+
+## What it needs
+
+The Horizon Nightly of 2026-11-07 (`2ebf00a0`). On a newer Horizon it is left out of the build until a release for that version is out. Excavator and Infinity Miner need Baritone, as in Meteor.
+
+## Network
+
+No telemetry. It connects only for what you ask: the accounts screen to `login.live.com`, Xbox Live and `api.minecraftservices.com` when you add or use an account, `.name-history` to `laby.net`, proxies and Swarm to the addresses you give them, and Discord Presence to the local Discord client.
+
+## Licence
+
+GPL-3.0-only, as Meteor Client is. `LICENSE` and `NOTICE` in the source list its copyright and what it includes."""
+authors = ["Meteor Development", "malithedeveloper"]
+owners = ["malithedeveloper"]
+owner_ids = [46960964]
+license = "GPL-3.0-only"
+source = "https://github.com/malithedeveloper/meteor-horizon"
+icon = "icons/meteor_horizon.png"
+categories = ["utility"]
+tags = ["meteor", "utility-client", "clickgui", "hud", "port"]
+key = "RWSjN7+g9Hbgso6CjEWjvTQYUScmFAQjBMSY/PjjRUTLBl5g4tk094lZ"
+
+[[versions]]
+version = "0.1.2"
+published = "2026-11-08"
+game = "26.3"
+file = "meteor_horizon-0.1.2.hnmod"
+sha256 = "f0ce2056b458438e0365dee8dee7a59d4dc2c5194f1fbc39db1b523f647313e0"
+signature = """
+untrusted comment: signature from minisign secret key
+RUSjN7+g9HbgshzQQwk/XNy5XhMJ9HTDUIePmN5GsJ8BNOUfwCjEaaB6SbCj5lC8a6JMxdRd7H1ziEYZgt9VyIo26dMk2chPFQk=
+trusted comment: timestamp:1794166269\tfile:meteor_horizon-0.1.2.hnmod\thashed
+gWGhRtdNA1/6TJ4f1qDmd/G9LfaTf7ZgfhH8vt0a5aQv6RrU/QHsI6gN2OHLcIKV0TIm1HwKVDt2QPyi433NAQ=="""
+changelog = "First release on the registry."
