@@ -1,7 +1,7 @@
 id = "horizon_physics"
 kind = "native-mod"
 name = "PhysicsModHorizon"
-summary = "Physics for Horizon, inspired by PhysicsMod: ragdolls, waves, physical particles and capes."
+summary = "PhysicsMod for Horizon"
 description = """
 By tariksabanuz
 
@@ -31,6 +31,13 @@ source = "https://github.com/tariksabanuz/PhysicsModHorizon"
 icon = "icons/horizon_physics.png"
 categories = ["decoration", "game-mechanics"]
 tags = ["physics", "ragdolls", "water", "waves", "particles", "capes"]
+
+[[versions]]
+version = "0.20.5"
+published = "2026-11-08"
+game = "26.3"
+file = "horizon_physics-0.20.5.hnmod"
+sha256 = "f933f8486d19e130b3422ea4a28954ce8f06e71492bcf6045960d61d3574b46b"
 
 [[versions]]
 version = "0.18.0"
