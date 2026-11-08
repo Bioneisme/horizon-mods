@@ -13,8 +13,9 @@ Horizonmatica is a re-creation of **Litematica** (with its **printer**) for Hori
 - **Placements:** several at once; move, rotate, mirror, show or hide each; a move mode for mouse wheel and arrow keys. The placements are remembered per world and dimension and restored when you join again.
 - **Save your own:** select an area with the selection tool (a stick: left and right click set the corners, the wheel grows and moves the box) and save it as a `.litematic` (blocks and their states), chunk by chunk as in Litematica: chunks not loaded yet show as frames to fly to.
 - **Material list:** missing, total and carried, with item icons, in the HUD or in the menu, and copied to the clipboard as a table for spreadsheets.
-- **Menu (M):** a screen of its own, drawn with the game's widgets.
+- **Menu (M):** a screen of its own, drawn with the game's widgets, with a Keys tab: every action can be put on a key of your choice.
 - **Pick block:** middle-click a ghost block to take that block in hand, for building by hand.
+- **Easy place:** look at a ghost block and its block is taken in hand; hold the right mouse button to place it, facing the right way. While it is on, only the schematic's blocks can be placed. Its own *air place* option (off by default) places ghost blocks without a neighbour.
 - **Highlights:** mark missing and wrong blocks through everything, however far away, for all items or just one you pick in the material list.
 - **Printer:** places one missing block within reach every few ticks, from the bottom up. It only clicks when Horizon's own placement logic says the click produces exactly the wanted state (stairs, slabs, logs, furnaces…). Redstone-aware order, repeater, comparator and note block setup after placing, double slabs and stacks, chests, falling blocks. The camera never moves.
 
@@ -23,19 +24,18 @@ Usage: put schematics into `schematics/` next to `options.txt` of your instance 
 ## What it does and doesn't do
 - **Reads** only files in the instance's `schematics/` folder, and creates that folder if it's missing.
 - **Writes** only the `.litematic` files you save (`/hm save`), into that folder. Settings and remembered placements go through Horizon's mod settings.
-- **Network:** no connections of its own. The only thing sent to a server is what the printer does: the same block-placing clicks a player would make (with the matching look direction), and hotbar slot changes.
+- **Network:** no connections of its own. The only thing sent to a server is what the printer and easy place do: the same block-placing clicks a player would make (with the matching look direction), and hotbar slot changes.
 - **"Open folder"** in the menu opens the schematics folder in your file manager through Horizon's own function.
 - No telemetry, no downloads, no code run from schematic files. Schematics are parsed as data only.
 
-⚠️ On other people's servers, automatic placing may break the rules or trip anti-cheat. The printer is off until you turn it on (`K` or `/hm printer on`). Its *air place* option (off by default) is noticed by anti-cheat plugins such as Grim.
+⚠️ On other people's servers, automatic placing may break the rules or trip anti-cheat. The printer is off until you turn it on (`K` or `/hm printer on`). The *air place* options of the printer and easy place (off by default) are noticed by anti-cheat plugins such as Grim.
 
 **Version:** native mods use game internals, so Horizonmatica is pinned to one Horizon commit (currently Nightly 2026-11-04, `67dad0d`). A new Nightly needs a new release.
 
 ## Credits
 The idea, the way it's used, the file format and the behaviour come from **[Litematica](https://github.com/maruohon/litematica)** by masa (maruohon), maintained by **[Sakura-Ryoko](https://github.com/sakura-ryoko/litematica)**, and from **[Litematica Printer](https://github.com/aleksilassila/litematica-printer)** by aleksilassila. Horizonmatica is not an official project of these authors, isn't made or endorsed by them, and contains none of their code. Only the file format and the behaviour are re-created. If you like it, go and support the originals.
 
-Menus built with [horizon-menus](https://github.com/keksi2k/horizon-menus). MIT licensed.
-"""
+Menus built with [horizon-menus](https://github.com/keksi2k/horizon-menus). MIT licensed."""
 authors = ["keksi2k"]
 owners = ["keksi2k"]
 owner_ids = [32579030]
@@ -45,6 +45,32 @@ icon = "icons/horizonmatica.png"
 categories = ["utility"]
 tags = ["schematics", "litematica", "building", "printer", "material-list", "port"]
 key = "RWS+BRoCJslNCFapck3cbG2VFQcjlr1MUH5m3+CWA8zhJecoBoja7X94"
+
+[[versions]]
+version = "0.3.0"
+published = "2026-11-08"
+game = "26.3"
+file = "horizonmatica-0.3.0.hnmod"
+sha256 = "c229cc7c753721ec0c2f9456fb139537e25051d03b62ce5a5928df7abba76e00"
+signature = """
+untrusted comment: signature from minisign secret key\r
+RUS+BRoCJslNCOxL855cScJ72V0lPO5Az2sd+vn15xOgaobLgXCMoEHiOo1U/+cfwl1QUjVv0aWDVlyBFiapJ2Qw4ttGHUf7GwY=\r
+trusted comment: timestamp:1794145460\tfile:horizonmatica-0.3.0.hnmod\thashed\r
+0PjDDhoBbycZMx0X9pBrbAdNEomAIHGW/In9J5BBa/Ae431a3xL/UQWLjdzWkSKnDITeQdAtC7/rvhJ1UzhlDA=="""
+changelog = """
+### Added
+- Easy place: look at a ghost block and its block is taken in hand; hold the right mouse button to place it, facing the right way. While it is on, only the schematic's blocks can be placed Its own air place option places ghost blocks with no neighbour (`/hm easyplace`, Placement tab).
+- Keys tab: bind any action to a key, including ones that had no key before: rotate, mirror, move to me, show or hide, select, unload, area corners and more.
+
+### Changed
+- Keys are bound on the Keys tab, no longer in Options > Mods. Keys you changed there are kept as the starting point.
+- Credits moved from a tab to a button at the top left of the menu.
+
+### Fixed
+- At 720p the lower rows of the Placement tab ran under "Done"; that side now scrolls.
+- A printer click on a server no longer counts as a click of the selection tool when the tool is in hand.
+
+Built for Horizon Nightly 2026-11-04 (67dad0d, hook API 359)."""
 
 [[versions]]
 version = "0.2.0"
