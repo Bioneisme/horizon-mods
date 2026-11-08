@@ -1,0 +1,29 @@
+id = "cinematic_interactions"
+kind = "native-mod"
+name = "CinematicInteractionsHorizon"
+summary = "CinematicInteractions for Horizon"
+description = """
+Cinematic Interactions changes the way you interact with workstations in Horizon. Instead of opening a regular window, a crafting table, furnace, smithing table or other station becomes a cinematic scene in the world. The camera glides to the block, your arms rest on its edge, and you take items directly from the block.
+
+It works for the crafting table, furnace, smoker, blast furnace, smithing table, cartography table, grindstone, brewing stand, loom, enchanting table, anvil, beacon, chiseled bookshelf and campfire. Items you leave on a crafting table stay there, even after a restart.
+
+You can turn the mod on and off under Options > Mods > Cinematic Interactions. There are settings for the cinematic bars, the control hints and the camera speed.
+
+Requires: the Performance build of the launcher.
+
+Credits: a port of Cinematic Interactions by Southware (MIT), with the layouts, camera rigs and texts of the original mod."""
+authors = ["tariksabanuz"]
+owners = ["tariksabanuz"]
+owner_ids = [332662152]
+license = "MIT"
+source = "https://github.com/tariksabanuz/CinematicInteractionsHorizon"
+icon = "icons/cinematic_interactions.png"
+categories = ["optimization", "game-mechanics", "technology"]
+tags = ["cinematic", "interactions", "fun", "good", "magic", "utility", "mechanics", "zoom"]
+
+[[versions]]
+version = "0.12.1"
+published = "2026-11-08"
+game = "26.3"
+file = "cinematic_interactions-0.12.1.hnmod"
+sha256 = "4103113cb671244d5b1c513c59b6d21b1bea068312c88a7260a87461fb4af38c"
