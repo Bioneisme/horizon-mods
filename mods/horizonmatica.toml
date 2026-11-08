@@ -47,6 +47,39 @@ tags = ["schematics", "litematica", "building", "printer", "material-list", "por
 key = "RWS+BRoCJslNCFapck3cbG2VFQcjlr1MUH5m3+CWA8zhJecoBoja7X94"
 
 [[versions]]
+version = "0.3.1"
+published = "2026-11-08"
+game = "26.3"
+file = "horizonmatica-0.3.1.hnmod"
+sha256 = "e552380677fdf242ef6fda41d54d2611c671514767e2f5373beec61996356642"
+signature = """
+untrusted comment: signature from minisign secret key\r
+RUS+BRoCJslNCMYqQFgJIZpHBuyKwjvNCyT5YNr0Zv16lCVyXHS9J8+cEjGFIAYkuiQyH9zz/jIXAN/oTDH+4zlCMPkqzpaFMAs=\r
+trusted comment: timestamp:1794156245\tfile:horizonmatica-0.3.1.hnmod\thashed\r
+uTNXDbrOix5an4X2AAfQ8v1iAZwRYUnlfDhwUKDM5BTvVeZ9f+JQs5l4IsENM20CcczObk/lzhHIY9hIKZEkCw=="""
+changelog = """
+Everything since 0.2.0 (0.3.0 and 0.3.1).
+
+### Added
+- Easy place: look at a ghost block and its block is taken in hand; hold the right mouse button to place it, facing the right way. While it is on, only the schematic's blocks can be placed. Its own air place option places ghost blocks with no neighbour (`/hm easyplace`, Placement tab).
+- Keys tab: bind any action to a key, including ones that had no key before: rotate, mirror, move to me, show or hide, select, unload, area corners and more.
+
+### Changed
+- Keys are bound on the Keys tab, no longer in Options > Mods. Keys you changed there are kept as the starting point.
+- Credits moved from a tab to a button at the top left of the menu.
+
+### Fixed
+- Area corners (`/hm pos1`, `/hm pos2`, the Save tab, the selection tool) are limited to positions a world can have; coordinates outside are refused with a message. The area's size and block count are computed with checked, wider arithmetic, so extreme corners can no longer overflow and give a wrong size to `/hm save` and its size limit.
+- Moving, turning or mirroring a placement (`/hm origin`, `/hm move`, `/hm rotate`, `/hm mirror`, keys, wheel) is refused when it would reach outside the world, instead of overflowing.
+- Schematic files whose regions lie extremely far out, or whose sizes multiply past 64 bits, are refused when read instead of overflowing.
+- Layer shifting saturates instead of overflowing.
+- At 720p the lower rows of the Placement tab ran under "Done"; that side now scrolls.
+- A printer click on a server no longer counts as a click of the selection tool when the tool is in hand.
+
+Built for Horizon Nightly 2026-11-04 (67dad0d, hook API 359).
+"""
+
+[[versions]]
 version = "0.2.0"
 published = "2026-11-04"
 game = "26.3"
