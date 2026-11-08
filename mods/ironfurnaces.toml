@@ -1,0 +1,49 @@
+id = "ironfurnaces"
+kind = "native-mod"
+name = "Iron Furnaces"
+summary = "Thirteen faster furnaces with upgrades, augments, factories, generators and side config."
+description = """
+An unofficial port of Iron Furnaces 4.4.2 (NeoForge, by Qelifern, XenoMustache and Astryxion) to Horizon, as one native mod. Rewritten in Rust for Horizon's hooks, so no original code runs; the textures, models, recipes and language files are the original mod's. Not made or endorsed by its authors: please report problems to this project, not to them.
+
+### What's there
+
+- **Furnaces:** thirteen tiers with their cook times, and in-place upgrades (sneak and right-click; the contents stay).
+- **Augments:** blasting, smoking, speed, fuel, factory and generator, added by right-click or on the augment page.
+- **Factories:** two to six rows by tier, with Auto Split.
+- **Generators:** run on fuel, on food or on the blasting recipes, and make FE. Power goes out of any side set to output.
+- **Automation:** side config, auto input and output, and redstone modes. Hoppers and pipes follow the sides.
+- **Extras:** the Wireless Heat Transmitter and Receiver, the Settings Linker, the spooky and wrapping looks, Rainbow Coal, and the Rainbow Furnace with its core.
+- **Config:** `ironfurnaces.toml` in the config folder holds the Java mod's speeds, tiers, energy and generation.
+
+### With other mods
+
+- **JEI:** furnaces show as catalysts for smelting, and the generator's recipes are listed. W opens a guide written for this port.
+- **Jade:** shows a furnace's contents and a factory's or generator's energy.
+- **AE2:** a pattern provider fills a furnace through the face it touches. Set that face to Input/Output with Auto Output on, or put an import bus on an output face, so the result comes back. The crafting status knows each furnace's time.
+
+### Missing or not the same
+
+- **Experience** goes straight to the player instead of dropping orbs.
+- **Unlocking recipes** by taking a result doesn't happen.
+- **Left out:** PMMO's hook and the update checker.
+- **Allthemodium, Vibranium and Unobtainium furnaces** are there, but need those metals from another mod.
+
+"""
+authors = ["Qelifern", "XenoMustache", "Astryxion", "Joeypc6"]
+owners = ["Joeypc6"]
+owner_ids = [35495484]
+license = "MIT"
+source = "https://github.com/Joeypc6/IronFurnaces-Horizon"
+icon = "icons/ironfurnaces.png"
+categories = ["technology", "utility"]
+tags = ["furnace", "smelting", "factory", "generator", "automation"]
+
+[[versions]]
+version = "4.4.3"
+published = "2026-11-08"
+game = "26.3"
+file = "ironfurnaces-4.4.3.hnmod"
+sha256 = "3e155e98c35db1319aa31a52ed013cf30b801960cd734eb7b4e0ea171afd7534"
+changelog = """
+First Horizon release, a port of Iron Furnaces 4.4.2 (NeoForge). 4.4.3 is this port's own version number. Built and tested on Horizon commit 6560641.
+"""
