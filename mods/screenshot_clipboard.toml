@@ -1,0 +1,40 @@
+id = "screenshot_clipboard"
+kind = "native-mod"
+name = "Screenshot Clipboard"
+summary = "Automatically copies Minecraft screenshots to your clipboard for instant pasting with Ctrl+V."
+description = """
+Screenshot Clipboard lets you instantly paste Minecraft screenshots into Discord, Telegram, or any image editor without opening the screenshots folder.
+
+**Features:**
+- Automatically copies screenshots taken with F2 to the clipboard.
+- Keeps the original screenshots saved as usual.
+- Shows a Minecraft-style notification when a screenshot is copied.
+- Supports English and Russian notifications.
+- Includes in-game toggles for copying and notifications.
+
+**Compatibility:** Minecraft 26.3, Horizon Native, Windows only.
+
+Built in Rust. No network access or telemetry."""
+authors = ["Xariami"]
+owners = ["maliferen"]
+owner_ids = [234505373]
+license = "MIT"
+source = "https://github.com/maliferen/horizon-screenshot-clipboard"
+icon = "icons/screenshot_clipboard.png"
+categories = ["utility", "social"]
+tags = ["screenshot", "clipboard", "f2", "windows", "utility", "quality-of-life"]
+screenshots = ["screenshots/screenshot_clipboard/1.png"]
+
+[[versions]]
+version = "0.1.0"
+published = "2026-11-08"
+game = "26.3"
+file = "screenshot_clipboard-0.1.0.hnmod"
+sha256 = "9d816a1015be68a5abaec2764fd2413360223ef5f37637272bce2c88be78fc7d"
+changelog = """
+Initial release of Screenshot Clipboard.
+
+- Automatically copies screenshots to the Windows clipboard.
+- Keeps normal screenshot saving.
+- Adds a Minecraft-style notification with RU/EN support.
+- Includes toggles for clipboard copying and notifications."""
