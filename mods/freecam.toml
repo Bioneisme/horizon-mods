@@ -25,6 +25,19 @@ tags = ["freecam", "camera", "spectator", "tripod", "port"]
 key = "RWR4cJC6Jj3EWGi26o29Rs3hAIPWqf8koFdXV4bBLF/Tm84QPfRAYjO5"
 
 [[versions]]
+version = "0.1.1"
+published = "2026-11-08"
+game = "26.3"
+file = "freecam-0.1.1.hnmod"
+sha256 = "9a4caf01bf534631d6aea8a8b59936368b041922144083f95e2621fd1c4b2508"
+signature = """
+untrusted comment: signature from rsign secret key
+RUR4cJC6Jj3EWG4vmgQIcgVtdDmZjOkQvI99TqIDnpPQzgTI9WAp2gKMjBoayg+bnuryZllsu4gqyowUs5htbRd6Lm3oqnnYXwc=
+trusted comment: freecam 0.1.1 for Horizon (Minecraft 26.3), built from github.com/hakergeniusz/freecam
+pRaUDSAKA34mfdUwJZYaHstyIZkHcXRnfzK4WzuniSINhUGQIxxIwGChkT++JDXmpCZAmbqeziGkCfaSR3E+Bg=="""
+changelog = "Baritone compatibility: while Freeze player is on, a tick that drives the player still runs (a bot's held keys), and Camera interaction follows only your own clicks, so bots keep their targeting."
+
+[[versions]]
 version = "0.1.0"
 published = "2026-10-31"
 game = "26.3"
