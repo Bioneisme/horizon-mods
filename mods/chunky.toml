@@ -1,0 +1,102 @@
+id = "chunky"
+kind = "native-mod"
+name = "Chunky For Horizon"
+summary = "Pre-generates chunks quickly, safely, and efficiently for Horizon worlds"
+description = """
+A fast, safe, and efficient chunk pre-generation mod for [Horizon](https://playhorizon.dev), the native Rust reimplementation of Minecraft: Java Edition.
+
+**Chunky for Horizon** is a 100% feature-complete native port of [Chunky](https://github.com/pop4959/Chunky) by pop4959, implemented in Rust around Horizon's native mod hooks with zero external dependencies.
+
+---
+
+### Features
+
+- **Full Command Parity**: Complete `/chunky` command tree with 24 Brigadier subcommands and client-side tab completion.
+  - `start [world] [shape] [cx cz] [rx [rz]]`
+  - `pause [world]`, `continue [world]`, `cancel [world]`
+  - `progress`, `quiet <seconds>`, `silent`, `limit <rate>`
+  - `center [x z]`, `radius <rx> [rz]`, `corners <x1 z1 x2 z2>`
+  - `shape <shape>`, `pattern <pattern>`, `world [name]`
+  - `spawn`, `worldborder`, `selection`
+  - `trim [world] [shape] [cx cz] [rx [rz]] <inside|outside> [filters...]`
+  - `confirm`, `reload`, `help [page]`
+- **Generation Shapes**: Square, Circle, Rectangle, Ellipse, Diamond, Pentagon, Hexagon, Triangle, and Star.
+- **Walk Patterns**: Concentric rings, Loop, Spiral, Strip bands, and custom CSV coordinate lists.
+- **Dedicated Server Console**: Full headless execution support directly from the server CLI terminal without needing an in-game player.
+- **Chunk Trimming**: Safe, high-speed Anvil region file inspection and trimming with `inhabited` and `unmodified` filter support.
+- **Task Persistence & Recovery**: Automatic task saving into `<world>/tasks/<world>.properties`, supporting `continue_on_restart` and safe pausing/cancelling.
+- **GUI Integration**: Configure update intervals, player limits, silence mode, and auto-continue directly via **Options → Mods → Chunky**.
+
+---
+
+### Getting Started
+
+1. Set your generation center (defaults to current position or world spawn):
+
+```text
+/chunky center 0 0
+```
+
+2. Set your generation radius in blocks:
+
+```text
+/chunky radius 1000
+```
+
+3. *(Optional)* Pick a shape and pattern:
+
+```text
+/chunky shape circle
+/chunky pattern concentric
+```
+
+4. Start pre-generating:
+
+```text
+/chunky start
+```
+
+You can pause with `/chunky pause`, monitor progress with `/chunky progress`, or cancel with `/chunky cancel`.
+
+---
+
+### Requirements
+
+- Requires **Horizon 26.3 Nightly** (revision `6560641`) or newer.
+- Compatible with singleplayer, LAN hosts, and headless dedicated servers.
+
+*Unofficial port. Chunky is originally developed by pop4959 under the GNU General Public License v3.0.*"""
+authors = ["enderliker"]
+owners = ["enderliker"]
+owner_ids = [166346005]
+license = "GPL-3.0"
+source = "https://github.com/enderliker/chunky-horizon"
+icon = "icons/chunky.png"
+categories = ["utility", "worldgen", "optimization"]
+tags = ["pregenerator", "chunks", "world-generation", "performance", "server", "admin", "trim", "port", "tools"]
+key = "RWRqzx718YYz/OHRM+pAnFWlDv8Rrgar5C4NszQg3EKJWQZWNel5Sslf"
+
+[[versions]]
+version = "1.0.1"
+published = "2026-11-08"
+game = "26.3"
+file = "chunky-1.0.1.hnmod"
+sha256 = "d27d5207db5f1db66b8e06e637a18f8baf105693d20ae04063dd2de37e601790"
+signature = """
+untrusted comment: signature from minisign secret key
+RURqzx718YYz/L/gjhG4/Hst2rl0TOACUIllYOFE6p6Mf2TOM2hbR9txGw0/2DyBva3XB8Q4fUMTQWc+V/4oH+qAL/SgWtxvlQs=
+trusted comment: chunky 1.0.1 for Horizon 26.3
+nfaUU2XCdgvbbdDGH7/v8S1rxWqrYMA0pOOyajOjZSdA7STzhWmzMxn1Djg9tUi3UOH0gfZpHyKJ4sjHmhmwCQ=="""
+changelog = """
+### Added
+
+- **Dedicated Server Console Execution**: Full command execution support directly from the headless dedicated server CLI terminal (`native_perform_console_command`), allowing server administrators to configure and run pre-generation tasks without needing an in-game player.
+- **Command Prefix Flexibility**: Resilient command handling supporting both `/chunky` and `chunky` (without leading slash) from both the terminal and in-game chat.
+- **Daily-Use Integration Test Suite**: 88 unit and integration tests covering generation ring transitions, pause/resume parity, world reload lifecycles, and mid-generation adjustments.
+
+### Fixed
+
+- **Completed Task Slot Freeing**: Finished pre-generation tasks are now cleanly removed from active memory and temporary task records are cleared, allowing immediate subsequent `/chunky start` commands with new radii or shapes without confirmation deadlocks.
+- **Immediate Pause Response**: `/chunky pause` immediately halts generation on the spot, releases held chunk tickets, saves task state cleanly, and silences progress notifications.
+- **Ring Pattern Boundary Stall**: Fixed a boundary issue at chunk 3,970 where concentric ring traversal prematurely marked the iterator as exhausted when stepping between rings.
+- **Cached Chunks Deadlock**: Resolved a stall where requesting chunks already present in game memory failed to trigger new load events."""
