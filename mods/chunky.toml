@@ -1,0 +1,74 @@
+id = "chunky"
+kind = "native-mod"
+name = "Chunky For Horizon"
+summary = "Pre-generates chunks, quickly, efficiently, and safely in horizon"
+description = """
+# Chunky for Horizon
+
+**Chunky for Horizon** is a native port of [Chunky](https://github.com/pop4959/Chunky), the popular chunk pre-generation tool, rebuilt for Horizon (Minecraft 26.3 in Rust). It generates your world's chunks ahead of time, so exploring doesn't cause terrain generation lag or stutter.
+
+## Features
+
+- **Full command parity:** the complete `/chunky` command tree, with tab completion for players and the dedicated server console.
+- **9 shapes:** `square`, `circle`, `rectangle`, `ellipse`, `diamond`, `pentagon`, `hexagon`, `triangle` and `star`.
+- **7 traversal patterns:** `concentric`, `loop`, `spiral`, `strip`, `csv`, `ring` and `world` (existing chunks).
+- **Region trimming:** `/chunky trim` removes unused or unmodified chunks to save disk space.
+- **Persistent tasks:** tasks are saved to `<world>/tasks/<world>.properties`, so you can pause, continue or resume them even after reloading the world.
+- **Adjustable pacing:** control the speed with `/chunky limit <rate>` and how often you get updates with `/chunky quiet <seconds>`.
+
+## Quick start
+
+1. **Set the center**
+   - At your position or spawn: `/chunky spawn`
+   - At specific coordinates: `/chunky center 0 0`
+   - To match the world border: `/chunky worldborder`
+2. **Set the radius** (in blocks):
+   ```
+   /chunky radius 1000
+   ```
+3. **Pick a shape** (optional, the default is `square`):
+   ```
+   /chunky shape circle
+   ```
+4. **Start pre-generating:**
+   ```
+   /chunky start
+   ```
+5. **Manage the task while it runs:**
+   - Check status: `/chunky progress`
+   - Pause: `/chunky pause`
+   - Continue: `/chunky continue`
+   - Cancel: `/chunky cancel`
+
+## Requirements
+
+- Horizon 26.3 
+- Works in single-player, LAN worlds and dedicated headless servers.
+- No external libraries or dependencies needed."""
+authors = ["enderliker"]
+owners = ["enderliker"]
+owner_ids = [166346005]
+license = "GPL-3.0"
+source = "https://github.com/enderliker/chunky-horizon"
+icon = "icons/chunky.png"
+categories = ["worldgen", "utility", "optimization"]
+tags = ["chunky", "pregeneration", "chunk-pregeneration", "world-generation", "performance", "optimization", "utility", "server", "native"]
+key = "RWRqzx718YYz/OHRM+pAnFWlDv8Rrgar5C4NszQg3EKJWQZWNel5Sslf"
+
+[[versions]]
+version = "1.0.2"
+published = "2026-11-09"
+game = "26.3"
+file = "chunky-1.0.2.hnmod"
+sha256 = "d01be1d7050c22b4f17fa1f3eff527942351bfa99f21e24d7118a23b079ddadf"
+signature = """
+untrusted comment: signature from minisign secret key
+RURqzx718YYz/OvGgiFJYfqI+eobG8sS700H+RP7LcGx0ZpZt+fua5xlZpK3xwuJieOyDRTUFK49KbUi3DkYjZr8NHvU9MApnQM=
+trusted comment: chunky 1.0.2 for Horizon 26.3
+opP7PsAsEVqy9MkufQN8jpy/ZtC5R3IHOmtm2sJ4VCXcY2Rm+5KbNEJ1CANr4gE/DHtQI8lkUk2QoTGt/B5xBQ=="""
+changelog = """
+Fixed commands like `/chunky` not working in single-player and LAN.
+
+The client was intercepting commands before they could reach the server. `command.rs` now skips client-side claiming when `game.remote.is_some()`, so Horizon forwards them as chat packets to the authoritative server thread. There, `native_perform_command` handles the command and `native_server_tick` drives chunk generation.
+
+Also added tests covering everyday command usage, checking that routing behaves the same in integrated single-player, LAN chat, and the console."""
