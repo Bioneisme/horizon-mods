@@ -22,6 +22,14 @@ categories = ["utility", "decoration"]
 tags = ["lighting", "dynamic-lights", "torch", "visual"]
 
 [[versions]]
+version = "1.0.1"
+published = "2026-11-09"
+game = "26.3"
+file = "dynamiclights-1.0.1.hnmod"
+sha256 = "27c7f542f02f2933fdb32500d42f99ff0522520bf5f2d5f4d3b1e7ff4cc07a67"
+changelog = "Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.0.0"
 published = "2026-11-08"
 game = "26.3"
