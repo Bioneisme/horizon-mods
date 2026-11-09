@@ -31,6 +31,14 @@ categories = ["utility"]
 tags = ["rei", "recipes", "item-list", "recipe-viewer", "search", "favorites", "port"]
 
 [[versions]]
+version = "1.1.1"
+published = "2026-11-09"
+game = "26.3"
+file = "roughlyenoughitems-1.1.1.hnmod"
+sha256 = "28d61292aa04ff485b745a32e3075084ea6a4a44f59d0168f99ef0bf9453a515"
+changelog = "Tooltips are drawn above REI's panels, as in Java: an item's tooltip in the creative or survival inventory, a creative tab's name, effect tooltips and REI's own tooltips are no longer hidden under the entry list or favorites. Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.1.0"
 published = "2026-11-09"
 game = "26.3"
