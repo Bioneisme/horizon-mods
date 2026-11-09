@@ -1,0 +1,33 @@
+id = "bwncr"
+kind = "native-mod"
+name = "Bad Wither No Cookie - Reloaded"
+summary = "A port of Bad Wither No Cookie - Reloaded: silence the world-wide wither and ender dragon sounds, thunder, and any sound you list."
+description = """
+A port of [Bad Wither No Cookie - Reloaded](https://gitlab.com/kreezxil/BadWitherNoCookie) by Kreezxil (originally by droidicus, with Eleksploded, Mrbysco and contributors) to Horizon, as a native mod. Ported by Kastromovskiy, with DeportedToHell.
+
+- **Silences the world-wide sounds**, each with its own option (all on by default): the wither's spawn and death, the ender dragon's death, the thunder of lightning, and the wandering trader's and llamas' ambient sounds.
+- **Silence Us**: any other sound event, one per line (`entity.sheep.step`, `entity.cow.ambient`, a mod's own).
+- **`/bwncr listen`** shows the name of every sound in chat, to find the ones to silence; **Debug Mode** writes each sound and what the mod did with it to the log.
+- **Its own config screen** (Cloth Config, as in Java), from Mod Menu's Configure or Options > Mods > Bad Wither No Cookie Reloaded > Configure...; kept in `config/bwncr.toml`, as in Java. English and Russian.
+
+Client only: it changes what you hear, on any server.
+
+Built for Horizon Nightly 2026-11-08 (`fdc87ae`). Native mods are compiled into the game and are not sandboxed: build only code you trust.
+
+**Credits.** Bad Wither No Cookie - Reloaded is Copyright (c) droidicus, Kreezxil, Eleksploded, MIT License; the icon is the mod's own logo. The config screen follows Cloth Config by shedaniel (LGPL-3.0). Ported to Horizon by Kastromovskiy and DeportedToHell; the port rewrites the mod in Rust under the MIT licence and is not affiliated with its authors, Mojang or Microsoft."""
+authors = ["DeportedToHell", "Kastromovskiy"]
+owners = ["DeportedToHell"]
+owner_ids = [344119465]
+license = "MIT"
+source = "https://github.com/DeportedToHell/MCRE-Mods/tree/main/bwncr"
+icon = "icons/bwncr.png"
+categories = ["utility", "game-mechanics"]
+tags = ["sound", "silence", "wither", "ender-dragon", "thunder", "client", "port"]
+
+[[versions]]
+version = "1.0.0"
+published = "2026-11-09"
+game = "26.3"
+file = "bwncr-1.0.0.hnmod"
+sha256 = "1d166666cf3de2417dbde034263e0c2c20aac333e8f3bc1ab9e4925ad502bc5d"
+changelog = "First release. Built for Horizon Nightly 2026-11-08 (fdc87ae)."
