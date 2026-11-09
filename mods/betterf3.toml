@@ -24,6 +24,14 @@ categories = ["utility"]
 tags = ["f3", "debug", "hud", "customization", "port"]
 
 [[versions]]
+version = "1.0.1"
+published = "2026-11-09"
+game = "26.3"
+file = "betterf3-1.0.1.hnmod"
+sha256 = "b03c28943f2f16f4d68e89a7c8b1917ae798f780779f9a47db85ab213755f408"
+changelog = "Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.0.0"
 published = "2026-11-09"
 game = "26.3"
