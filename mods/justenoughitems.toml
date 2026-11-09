@@ -28,6 +28,14 @@ categories = ["utility"]
 tags = ["jei", "recipes", "item-list", "recipe-viewer", "search", "port"]
 
 [[versions]]
+version = "1.1.1"
+published = "2026-11-09"
+game = "26.3"
+file = "justenoughitems-1.1.1.hnmod"
+sha256 = "3a1b303ddc7429101efb5b50c1a248962b506dc06acc60122d305df2fa133774"
+changelog = "Tooltips are drawn above JEI's panels, as in Java: an item's tooltip in the creative or survival inventory, a creative tab's name, effect tooltips and JEI's own tooltips are no longer hidden under the ingredient list or bookmarks. Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.1.0"
 published = "2026-11-09"
 game = "26.3"
