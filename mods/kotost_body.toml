@@ -1,0 +1,32 @@
+id = "kotost_body"
+kind = "native-mod"
+name = "Kotost Body"
+summary = "A bust drawn from each player's own skin (slim skins by default) that bounces only when you move, plus your own body in first person."
+description = """
+- **A bust for players with a slim skin**, drawn by the mod and textured from each player's own skin: no cosmetics item, no resource pack, nothing on the server. Shirts and necklines carry on over it, and the skin's jacket layer goes on top.
+- **It moves only when you move**: a small spring bounce on each step (more when running) and on jumps and landings. Standing still, it stays still. Left and right have springs of their own.
+- **Your own body in first person**: look down and see your body, legs and both arms in 3D, holding your items.
+- **Who gets it is up to you**: `config/kotost-body.txt` picks slim skins, a list of names, everyone or nobody, and tunes the bounce. The game re-reads it while you play.
+
+Client side only: other players see it only if they have the mod too. A chestplate hides it.
+
+Native source mod: install it on the launcher's Mods page, press Build there, and confirm the native-code warning. It runs with your account's permissions. Pinned to Nightly 2026-11-08 (fdc87ae) and Horizon Mixins 5a64af9.
+
+No Minecraft code or assets are included. MIT licensed."""
+authors = ["Kotost Games"]
+owners = ["Leks2000"]
+owner_ids = [107043945]
+license = "MIT"
+source = "https://github.com/Leks2000/kotost-body"
+icon = "icons/kotost_body.png"
+categories = ["decoration", "game-mechanics"]
+tags = ["cosmetic", "skin", "player-model", "first-person", "physics"]
+screenshots = ["screenshots/kotost_body/1.png", "screenshots/kotost_body/2.png", "screenshots/kotost_body/3.png", "screenshots/kotost_body/4.png"]
+
+[[versions]]
+version = "0.2.0"
+published = "2026-11-09"
+game = "26.3"
+file = "kotost_body-0.2.0.hnmod"
+sha256 = "3625971b6a257af2e563ca1da30c1e89586aa3df22613415d1cb7c7b7e424bc5"
+changelog = "First release. Pinned to Nightly 2026-11-08 (fdc87ae) and Horizon Mixins 5a64af9."
