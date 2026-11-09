@@ -13,7 +13,7 @@ Waypoints for Horizon.
 
 **What it does and doesn't do:** it only reads the game's own state (player position, dimension, camera, death screen, last death location, world folder name, server address) and draws on the HUD and its own screen. It stores waypoints as a text file per world and per server in `horizon-mods/.horizon-mod-data/waypoints/` inside the game folder. It uses only the Rust standard library, opens no network connections, and reads or writes no other files.
 
-Pinned to Horizon `c9d474d`, because it reads the world folder, server address, last frame's camera and the player's death from the game itself."""
+Pinned to Horizon `c9d474d`, because it reads the world folder, server address, camera and the player's death from the game itself."""
 authors = ["Nirokx"]
 owners = ["Nirokx"]
 owner_ids = [95123456]
@@ -22,6 +22,14 @@ source = "https://github.com/Nirokx/horizon-waypoints"
 icon = "icons/waypoints.png"
 categories = ["adventure", "utility"]
 tags = ["waypoints", "navigation", "markers", "hud"]
+
+[[versions]]
+version = "1.1.1"
+published = "2026-11-09"
+game = "26.3"
+file = "waypoints-1.1.1.hnmod"
+sha256 = "85b17fd75a3bccc9a78fed5f7fbc87c32ef6dcc5f742598e6d7d87b9f6ea8437"
+changelog = "Smoother labels: waypoint names and markers now stay locked to the world when you look around, instead of trailing a frame behind, and move one screen pixel at a time. While Freecam or Freelook is active they stay one frame behind, as before."
 
 [[versions]]
 version = "1.1.0"
