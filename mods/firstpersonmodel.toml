@@ -24,6 +24,14 @@ categories = ["decoration", "utility"]
 tags = ["first-person", "player-model", "camera", "immersion", "port"]
 
 [[versions]]
+version = "1.0.1"
+published = "2026-11-09"
+game = "26.3"
+file = "firstpersonmodel-1.0.1.hnmod"
+sha256 = "3a0fb2517b841914757bde88fcae4d3dc60fe770f5330837636331b3f9a829ed"
+changelog = "Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.0.0"
 published = "2026-11-09"
 game = "26.3"
