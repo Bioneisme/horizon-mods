@@ -22,6 +22,8 @@ What it changes in the game: the player's velocity and fall while swinging (own 
 and player pose, web lines drawn in the world, and the view's turn while running on a wall. It reads no files outside
 its settings and sends nothing over the network.
 
+Any feedback keeps this project alive! Ideas and bugs: https://github.com/wyddy7/minecraft-spider-man-rust/issues
+
 Fan-made, not affiliated with Marvel, Sony or Insomniac Games."""
 authors = ["wyddy7"]
 owners = ["wyddy7"]
@@ -31,6 +33,18 @@ source = "https://github.com/wyddy7/minecraft-spider-man-rust"
 icon = "icons/spider_man.png"
 categories = ["adventure", "transportation"]
 tags = ["spider-man", "web-swinging", "parkour", "wall-running", "movement"]
+
+[[versions]]
+version = "0.2.1"
+published = "2026-11-09"
+game = "26.3"
+file = "spider_man-0.2.1.hnmod"
+sha256 = "9446ff53c82b28541199dd3f17856fc81200cbe16dee3f4bc67594219fd43fda"
+changelog = """
+- A hint for a first web: "Hold R and jump to swing, or hold Z to zip" above the hotbar until your first web or zip, then never again.
+- A web shot and a zip have a sound (the game's soul sand steps, pitched up).
+
+Same pins as 0.2.0: Nightly 2026-11-03 (2944480), horizon-mixins ddd9700. Release v0.2.1 of the repository."""
 
 [[versions]]
 version = "0.2.0"
