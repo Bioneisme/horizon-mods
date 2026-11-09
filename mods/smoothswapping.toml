@@ -23,6 +23,14 @@ categories = ["utility"]
 tags = ["inventory", "animation", "ui", "port"]
 
 [[versions]]
+version = "1.1.1"
+published = "2026-11-09"
+game = "26.3"
+file = "smoothswapping-1.1.1.hnmod"
+sha256 = "4baf253e4a8d6f14af12ab10f91cdcb71f2d661988701a53803e3f2d1b49eb86"
+changelog = "Built for Horizon Nightly 2026-11-08 (fdc87ae)."
+
+[[versions]]
 version = "1.1.0"
 published = "2026-11-08"
 game = "26.3"
