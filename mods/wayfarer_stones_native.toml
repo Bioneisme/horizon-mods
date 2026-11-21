@@ -1,0 +1,36 @@
+id = "wayfarer_stones_native"
+kind = "native-mod"
+name = "Wayfarer Stones"
+summary = "Place stones around your world, activate them, and travel between the ones you know."
+description = """
+**One mod, one file, on Horizon's new mod API.** 0.8.0 carries the textures, text, recipes and villages inside it. If you still have [Wayfarer Stones (assets)](https://playhorizon.dev/mods/wayfarer_stones), remove it: both use the same namespace. Your stones, their names and each world's settings stay.
+
+- **Place** a stone, or find one in a village. Right-click it once to add it to your list.
+- **Travel** from any stone you know: pick a destination on the screen, or search for it. You land beside the stone, on solid ground.
+- **Pay** in experience levels: 1, plus 1 for each 500 blocks, up to 5. Travel between dimensions costs 3.
+- **Carry** a Wayfarer's Scroll to travel from anywhere. Each travel uses one up.
+- **Stones are safe:** only the owner or an operator can break one, and pistons won't move it.
+
+Every world has its own settings: cost, cooldown, warmup and more. English and Russian.
+
+**Commands:** `/wayfarer`, `/wayfarer list`, `/wayfarer to <name>`, `/wayfarer name <name>`, `/wayfarer forget <name>`. Operators also have `/wayfarer global <name>` and `/wayfarer remove <name>`.
+
+Native source mod: install it on the launcher's Mods page, press Build there, and confirm the native-code warning. The launcher compiles it against the Horizon build it is pinned to, named in each version's changelog. It runs with your account's permissions.
+
+No Minecraft code or assets are included. All the art is original. MIT licensed."""
+authors = ["bioneisme"]
+owners = ["Bioneisme"]
+owner_ids = [92920845]
+license = "MIT"
+source = "https://github.com/Bioneisme/wayfarer-stones"
+icon = "icons/wayfarer_stones_native.png"
+categories = ["transportation", "adventure"]
+tags = ["teleport", "waystones", "fast-travel", "villages"]
+
+[[versions]]
+version = "0.8.0"
+published = "2026-11-21"
+game = "26.3"
+file = "wayfarer_stones_native-0.8.0.hmod"
+sha256 = "5e75b353b71492cc001b4d0c1a0648bc3c5aecfbfa67d531774de0a8125ee948"
+changelog = "Reactivated as one native .hmod on Horizon's mod API: the code and all the content in one package (remove the separate assets mod if you have it). Same blocks and world files, so your stones stay; pistons neither move nor crush a stone. Pinned to Nightly 2026-11-21 (8f83e5c) and Horizon Mixins e59da90."
