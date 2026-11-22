@@ -28,6 +28,14 @@ categories = ["transportation", "adventure"]
 tags = ["teleport", "waystones", "fast-travel", "villages"]
 
 [[versions]]
+version = "0.8.1"
+published = "2026-11-22"
+game = "26.3"
+file = "wayfarer_stones_native-0.8.1.hmod"
+sha256 = "3d7290d7af8168f34d0d0cf8a5858c104540c6925ed7342181c5bc306d9ff5f6"
+changelog = "Pinned to Nightly 2026-11-22 (2b77287) and Horizon Mixins e59da90, so it builds on that Nightly (a launcher there left 0.8.0 out). No change in the mod itself."
+
+[[versions]]
 version = "0.8.0"
 published = "2026-11-21"
 game = "26.3"
