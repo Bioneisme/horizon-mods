@@ -31,6 +31,14 @@ tags = ["nuclear", "bombs", "explosions", "radiation", "missile", "bunker"]
 screenshots = ["screenshots/big_nukes_native/1.jpg", "screenshots/big_nukes_native/2.jpg", "screenshots/big_nukes_native/3.jpg", "screenshots/big_nukes_native/4.jpg", "screenshots/big_nukes_native/5.jpg", "screenshots/big_nukes_native/6.jpg", "screenshots/big_nukes_native/7.jpg"]
 
 [[versions]]
+version = "0.4.1"
+published = "2026-11-22"
+game = "26.3"
+file = "big_nukes_native-0.4.1.hmod"
+sha256 = "0dc329e41b02ab6f1c1da05865ec73fe70c4db8f0121162c04ce3a361d383a29"
+changelog = "Pinned to Nightly 2026-11-22 (2b77287) and Horizon Mixins e59da90: the clouds' render mixins tie it to one Nightly, so 0.4.0 stays on 2026-11-21. A waves.json that doesn't read is kept aside as waves.json.broken before the world starts afresh, instead of being written over; if it can't be, nothing is saved in that world and the players are told."
+
+[[versions]]
 version = "0.4.0"
 published = "2026-11-22"
 game = "26.3"
