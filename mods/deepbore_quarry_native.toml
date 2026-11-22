@@ -29,6 +29,14 @@ tags = ["quarry", "mining", "machine", "automation", "digging"]
 screenshots = ["screenshots/deepbore_quarry_native/1.jpg", "screenshots/deepbore_quarry_native/2.jpg", "screenshots/deepbore_quarry_native/3.jpg", "screenshots/deepbore_quarry_native/4.png"]
 
 [[versions]]
+version = "0.3.1"
+published = "2026-11-22"
+game = "26.3"
+file = "deepbore_quarry_native-0.3.1.hmod"
+sha256 = "62b0d8b13cc729b319c6f2d5ecac62c8166b5123e66d1b8191b9407086b07b50"
+changelog = "Pinned to Nightly 2026-11-22 (2b77287) and Horizon Mixins e59da90, so it builds on that Nightly (a launcher there left 0.3.0 out). No change in the mod itself."
+
+[[versions]]
 version = "0.3.0"
 published = "2026-11-21"
 game = "26.3"
