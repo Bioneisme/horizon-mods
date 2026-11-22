@@ -1,0 +1,39 @@
+id = "big_nukes_native"
+kind = "native-mod"
+name = "Big Nukes"
+summary = "Nuclear bombs whose shockwave digs real craters and leaves fallout. Launch missiles, build a superbomb, survive in a bunker."
+description = """
+**One mod, one file, on Horizon's new mod API.** 0.4.0 carries its textures, models, sounds, text and recipes inside it. Your bombs, zones and bunkers stay.
+
+- **Make** the bombs: mine uranium below y=16, enrich it in a centrifuge, and put the parts together on the assembly table.
+- **Blast** with a demolition charge (radius 16), a tactical warhead (50), an atomic bomb (250), a neutron bomb that kills but leaves the buildings standing, or a dirty bomb. The flash, the mushroom cloud and the ring of the shockwave are seen from far beyond your render distance, and the wave leaves a crater, ash and fires behind it.
+- **Set them off** by fuse, by a keypad's code, or by a remote from any distance. Fire a missile, or a splitting missile with three warheads, from a silo at coordinates up to 4096 blocks away, or call a bomber onto a strike beacon. A siren wails at a launch.
+- **Build** the Sunbreaker round its core: 26 implosion shells and 98 neutron reflectors, radius 600 to 1000. At 1000 it breaks through the bedrock.
+- **Survive** the radiation: a Geiger counter, a hazmat suit, anti-rad, iodine tablets, and a decontaminator that turns the ash back to grass.
+- **Weather** what follows the first blast: radioactive storms, mutants in the zones and falling satellites, which a powered radar warns of.
+- **Hide** in a bunker: reinforced and armored concrete, a multilayer wall that holds even the Sunbreaker away from its center, a hermetic door, and an air filter powered by a fuel generator that keeps 95% of the radiation out of a sealed room.
+
+The Big Nukes Guide tells it all in the game. English and Russian.
+
+**Commands:** `/bignukes guide` gives the guide. Operators have `/bignukes blast <radius> [x y z]`, `/bignukes maxpower [16|50|250|1000|1024]`, the largest blast a world allows, and `/bignukes events`, which turns the storms, mutants and satellites on or off.
+
+Native source mod: install it on the launcher's Mods page, press Build there, and confirm the native-code warning. The launcher compiles it against the Horizon build it is pinned to, named in each version's changelog. It runs with your account's permissions.
+
+All the art and sounds are original. No Minecraft code or assets are included. MIT licensed."""
+authors = ["bioneisme"]
+owners = ["Bioneisme"]
+owner_ids = [92920845]
+license = "MIT"
+source = "https://github.com/Bioneisme/big-nukes"
+icon = "icons/big_nukes_native.png"
+categories = ["technology", "game-mechanics", "equipment"]
+tags = ["nuclear", "bombs", "explosions", "radiation", "missile", "bunker"]
+screenshots = ["screenshots/big_nukes_native/1.jpg", "screenshots/big_nukes_native/2.jpg", "screenshots/big_nukes_native/3.jpg", "screenshots/big_nukes_native/4.jpg", "screenshots/big_nukes_native/5.jpg", "screenshots/big_nukes_native/6.jpg", "screenshots/big_nukes_native/7.jpg"]
+
+[[versions]]
+version = "0.4.0"
+published = "2026-11-22"
+game = "26.3"
+file = "big_nukes_native-0.4.0.hmod"
+sha256 = "1f95bc0b2c58fda80e1896335afa50aabace85eef84c0a2d0c9fd56036f785b8"
+changelog = "Reactivated as one native .hmod on Horizon's mod API: the code and all the content in one package. Same blocks and world files, so your bombs, zones and bunkers stay. New since 0.2.0: the neutron bomb, the dirty bomb, the splitting missile, the siren and launch notices; radioactive storms, mutants and falling satellites after a world's first blast, with a radar that warns of them. The mod's state is saved with the world. Pinned to Nightly 2026-11-21 (8f83e5c) and Horizon Mixins e59da90."
